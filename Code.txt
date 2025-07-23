@@ -1,12 +1,54 @@
-Step 3: Add it to your system PATH
-bash
-Copy
-Edit
-echo 'export PATH=/opt/nodejs/bin:$PATH' >> ~/.bashrc
-source ~/.bashrc
-If you're running as root or non-login shell, just export manually:
+remote: Enumerating objects: 3, done.
+remote: Counting objects: 100% (3/3), done.
+remote: Compressing objects: 100% (2/2), done.
+remote: Total 3 (delta 0), reused 3 (delta 0), pack-reused 0 (from 0)
+Receiving objects: 100% (3/3), 26.51 MiB | 2.89 MiB/s, done.
+root@DELRHDERS001P:~#    tar -xf main.tar.xz
+tar: main.tar.xz: Cannot open: No such file or directory
+tar: Error is not recoverable: exiting now
+root@DELRHDERS001P:~# cd npm
+root@DELRHDERS001P:~/npm# ls
+main.tar.xz
+root@DELRHDERS001P:~/npm# ^C
+root@DELRHDERS001P:~/npm# tar -xf main.tar.xz
+root@DELRHDERS001P:~/npm# ls
+main.tar.xz  node-v22.2.0-linux-x64
+root@DELRHDERS001P:~/npm# cd node-v22.2.0-linux-x64
+root@DELRHDERS001P:~/npm/node-v22.2.0-linux-x64# ls
+bin  CHANGELOG.md  include  lib  LICENSE  README.md  share
+root@DELRHDERS001P:~/npm/node-v22.2.0-linux-x64# cd bin
+root@DELRHDERS001P:~/npm/node-v22.2.0-linux-x64/bin# ls
+corepack  node  npm  npx
+root@DELRHDERS001P:~/npm/node-v22.2.0-linux-x64/bin# sudo mv node-v22.2.0-linux-x64 /opt/nodejs
+mv: cannot stat 'node-v22.2.0-linux-x64': No such file or directory
+root@DELRHDERS001P:~/npm/node-v22.2.0-linux-x64/bin# cd..
+cd..: command not found
+root@DELRHDERS001P:~/npm/node-v22.2.0-linux-x64/bin# cd ..
+root@DELRHDERS001P:~/npm/node-v22.2.0-linux-x64# cd ..
+root@DELRHDERS001P:~/npm# sudo mv node-v22.2.0-linux-x64 /opt/nodejs
+root@DELRHDERS001P:~/npm# echo 'export PATH=/opt/nodejs/bin:$PATH' >> ~/.bashrc
+root@DELRHDERS001P:~/npm# source ~/.bashrc
+root@DELRHDERS001P:~/npm# cd ..
+root@DELRHDERS001P:~# npm -v
+node:internal/modules/cjs/loader:1189
+  throw err;
+  ^
 
-bash
-Copy
-Edit
-export PATH=/opt/nodejs/bin:$PATH
+Error: Cannot find module '../lib/cli.js'
+Require stack:
+- /opt/nodejs/bin/npm
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1186:15)
+    at Module._load (node:internal/modules/cjs/loader:1012:27)
+    at Module.require (node:internal/modules/cjs/loader:1271:19)
+    at require (node:internal/modules/helpers:123:16)
+    at Object.<anonymous> (/opt/nodejs/bin/npm:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1434:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1518:10)
+    at Module.load (node:internal/modules/cjs/loader:1249:32)
+    at Module._load (node:internal/modules/cjs/loader:1065:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:158:12) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/opt/nodejs/bin/npm' ]
+}
+
+Node.js v22.2.0
