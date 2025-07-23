@@ -1,1 +1,131 @@
-curl -X POST https://10.91.31.57/login -H "Content-Type: application/json" -d '{"email":"your@email.com","password":"yourpassword"}' -k -v
+root@DELRHDERS001P:/opt/erapp/frontend# sudo chmod -R 755 /opt/erapp/frontend
+root@DELRHDERS001P:/opt/erapp/frontend# sudo chown -R www-data:www-data /opt/erapp/frontend
+root@DELRHDERS001P:/opt/erapp/frontend# sudo systemctl restart nginx
+root@DELRHDERS001P:/opt/erapp/frontend# sudo nano /etc/nginx/sites-available/default
+root@DELRHDERS001P:/opt/erapp/frontend# sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+root@DELRHDERS001P:/opt/erapp/frontend# sudo systemserver {
+root@DELRHDERS001P:/opt/erapp/frontend# sudo systemctl reload nginx
+root@DELRHDERS001P:/opt/erapp/frontend# pm2 status
+┌────┬───────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name          │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼───────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ er-backend    │ default     │ 1.0.0   │ fork    │ 2020051  │ 26m    │ 261  │ online    │ 0%       │ 96.1mb   │ root     │ disabled │
+└────┴───────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+root@DELRHDERS001P:/opt/erapp/frontend# pm2 logs
+[TAILING] Tailing last 15 lines for [all] processes (change the value with --lines option)
+/root/.pm2/pm2.log last 15 lines:
+PM2        | 2025-07-23T13:53:40: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T13:53:40: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T13:53:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T13:53:41: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T13:53:41: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T13:53:57: PM2 log: Stopping app:er-backend id:0
+PM2        | 2025-07-23T13:53:57: PM2 log: App [er-backend:0] exited with code [0] via signal [SIGINT]
+PM2        | 2025-07-23T13:53:57: PM2 log: pid=1977221 msg=process killed
+PM2        | 2025-07-23T13:53:57: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T13:53:57: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T15:02:15: PM2 log: Stopping app:er-backend id:0
+PM2        | 2025-07-23T15:02:15: PM2 log: App [er-backend:0] exited with code [0] via signal [SIGINT]
+PM2        | 2025-07-23T15:02:15: PM2 log: pid=1977274 msg=process killed
+PM2        | 2025-07-23T15:02:15: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T15:02:15: PM2 log: App [er-backend:0] online
+
+/root/.pm2/logs/er-backend-error.log last 15 lines:
+0|er-backe |   },
+0|er-backe |   ok: 0,
+0|er-backe |   code: 18,
+0|er-backe |   codeName: 'AuthenticationFailed',
+0|er-backe |   connectionGeneration: 0
+0|er-backe | }
+0|er-backe | (node:1977221) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+0|er-backe | (Use `node --trace-warnings ...` to show where the warning was created)
+0|er-backe | (node:1977221) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+0|er-backe | (node:1977274) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+0|er-backe | (Use `node --trace-warnings ...` to show where the warning was created)
+0|er-backe | (node:1977274) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+0|er-backe | (node:2020051) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+0|er-backe | (Use `node --trace-warnings ...` to show where the warning was created)
+0|er-backe | (node:2020051) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
+
+/root/.pm2/logs/er-backend-out.log last 15 lines:
+0|er-backe | Connected to MongoDB
+0|er-backe | Server is running on port http://0.0.0.0:3000
+0|er-backe | Connected to MongoDB
+0|er-backe | Server is running on port http://0.0.0.0:3000
+0|er-backe | Connected to MongoDB
+0|er-backe | Server is running on port http://0.0.0.0:3000
+
+^X^C
+root@DELRHDERS001P:/opt/erapp/frontend# sudo nano /etc/nginx/sites-available/default
+root@DELRHDERS001P:/opt/erapp/frontend# sudo nginx -t
+nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
+nginx: configuration file /etc/nginx/nginx.conf test is successful
+root@DELRHDERS001P:/opt/erapp/frontend# sudo systemctl reload nginx
+root@DELRHDERS001P:/opt/erapp/frontend# cd ..
+root@DELRHDERS001P:/opt/erapp# cd server
+root@DELRHDERS001P:/opt/erapp/server# curl -X POST https://10.91.31.57/api/auth/register -H "Content-Type: application/json" -d '{"email":"iemaildivyansh@gmail.com","password":"random","role":"admin"}' -k
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="favicon.jpg"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>ER App | Entitlement Review</title><link href="/static/css/2.dbb74888.chunk.css" rel="stylesheet"><link href="/static/css/main.f36f01c9.chunk.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div><script>!function(e){function r(r){for(var n,i,a=r[0],c=r[1],l=r[2],s=0,p=[];s<a.length;s++)i=a[s],Object.prototype.hasOwnProperty.call(o,i)&&o[i]&&p.push(o[i][0]),o[i]=0;for(n in c)Object.prototype.hasOwnProperty.call(c,n)&&(e[n]=c[n]);for(f&&f(r);p.length;)p.shift()();return u.push.apply(u,l||[]),t()}function t(){for(var e,r=0;r<u.length;r++){for(var t=u[r],n=!0,a=1;a<t.length;a++){var c=t[a];0!==o[c]&&(n=!1)}n&&(u.splice(r--,1),e=i(i.s=t[0]))}return e}var n={},o={1:0},u=[];function i(r){if(n[r])return n[r].exports;var t=n[r]={i:r,l:!1,exports:{}};return e[r].call(t.exports,t,t.exports,i),t.l=!0,t.exports}i.e=function(e){var r=[],t=o[e];if(0!==t)if(t)r.push(t[2]);else{var n=new Promise((function(r,n){t=o[e]=[r,n]}));r.push(t[2]=n);var u,a=document.createElement("script");a.charset="utf-8",a.timeout=120,i.nc&&a.setAttribute("nonce",i.nc),a.src=function(e){return i.p+"static/js/"+({}[e]||e)+"."+{3:"78c7d907"}[e]+".chunk.js"}(e);var c=new Error;u=function(r){a.onerror=a.onload=null,clearTimeout(l);var t=o[e];if(0!==t){if(t){var n=r&&("load"===r.type?"missing":r.type),u=r&&r.target&&r.target.src;c.message="Loading chunk "+e+" failed.\n("+n+": "+u+")",c.name="ChunkLoadError",c.type=n,c.request=u,t[1](c)}o[e]=void 0}};var l=setTimeout((function(){u({type:"timeout",target:a})}),12e4);a.onerror=a.onload=u,document.head.appendChild(a)}return Promise.all(r)},i.m=e,i.c=n,i.d=function(e,r,t){i.o(e,r)||Object.defineProperty(e,r,{enumerable:!0,get:t})},i.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},i.t=function(e,r){if(1&r&&(e=i(e)),8&r)return e;if(4&r&&"object"==typeof e&&e&&e.__esModule)return e;var t=Object.create(null);if(i.r(t),Object.defineProperty(t,"default",{enumerable:!0,value:e}),2&r&&"string"!=typeof e)for(var n in e)i.d(t,n,function(r){return e[r]}.bind(null,n));return t},i.n=function(e){var r=e&&e.__esModule?function(){return e.default}:function(){return e};return i.d(r,"a",r),r},i.o=function(e,r){return Object.prototype.hasOwnProperty.call(e,r)},i.p="/",i.oe=function(e){throw console.error(e),e};var a=this.webpackJsonpfweb=this.webpackJsonpfweb||[],c=a.push.bind(a);a.push=r,a=a.slice();for(var l=0;l<a.length;l++)r(a[l]);var f=c;t()}([])</script><script src="/static/js/2.0f065ca2.chunk.js"></script><script src="/static/js/main.945e670a.chunk.js"></script></body></html>root@DELRHDERS001P:/opt/erapp/server# cd
+root@DELRHDERS001P:~# curl -X POST https://10.91.31.57/login -H "Content-Type: application/json" -d '{"email":"your@email.com","password":"yourpassword"}' -k -v
+Note: Unnecessary use of -X or --request, POST is already inferred.
+*   Trying 10.91.31.57:443...
+* Connected to 10.91.31.57 (10.91.31.57) port 443 (#0)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* TLSv1.0 (OUT), TLS header, Certificate Status (22):
+* TLSv1.3 (OUT), TLS handshake, Client hello (1):
+* TLSv1.2 (IN), TLS header, Certificate Status (22):
+* TLSv1.3 (IN), TLS handshake, Server hello (2):
+* TLSv1.2 (IN), TLS header, Finished (20):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.3 (IN), TLS handshake, Encrypted Extensions (8):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.3 (IN), TLS handshake, Certificate (11):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.3 (IN), TLS handshake, CERT verify (15):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.3 (IN), TLS handshake, Finished (20):
+* TLSv1.2 (OUT), TLS header, Finished (20):
+* TLSv1.3 (OUT), TLS change cipher, Change cipher spec (1):
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+* TLSv1.3 (OUT), TLS handshake, Finished (20):
+* SSL connection using TLSv1.3 / TLS_AES_256_GCM_SHA384
+* ALPN, server accepted to use http/1.1
+* Server certificate:
+*  subject: C=IN; ST=Uttar Pradesh; L=Noida; O=RELIGARE ENTERPRISES LIMITED; CN=*.religare.in
+*  start date: Jul 23 06:37:02 2025 GMT
+*  expire date: Jun 21 10:11:04 2026 GMT
+*  issuer: C=BE; O=GlobalSign nv-sa; CN=GlobalSign RSA OV SSL CA 2018
+*  SSL certificate verify result: unable to get local issuer certificate (20), continuing anyway.
+* TLSv1.2 (OUT), TLS header, Supplemental data (23):
+> POST /login HTTP/1.1
+> Host: 10.91.31.57
+> User-Agent: curl/7.81.0
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 52
+>
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
+* old SSL session ID is stale, removing
+* TLSv1.2 (IN), TLS header, Supplemental data (23):
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 405 Not Allowed
+< Server: nginx/1.18.0 (Ubuntu)
+< Date: Wed, 23 Jul 2025 10:03:29 GMT
+< Content-Type: text/html
+< Content-Length: 166
+< Connection: keep-alive
+<
+<html>
+<head><title>405 Not Allowed</title></head>
+<body>
+<center><h1>405 Not Allowed</h1></center>
+<hr><center>nginx/1.18.0 (Ubuntu)</center>
+</body>
+</html>
+* Connection #0 to host 10.91.31.57 left intact
+root@DELRHDERS001P:~#
