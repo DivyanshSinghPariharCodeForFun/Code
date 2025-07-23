@@ -1,80 +1,31 @@
-You have two main issues in your Nginx error log:
-
----
-
-## 1. **SSL Certificate Not Found**
-```
-cannot load certificate "/etc/ssl/religare/religare.in.crt": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/etc/ssl/religare/religare.in.crt, r)
-```
-**What this means:**  
-Nginx cannot find your SSL certificate file at `/etc/ssl/religare/religare.in.crt`.
-
-**How to fix:**
-- Make sure the file `/etc/ssl/religare/religare.in.crt` exists and is readable by Nginx.
-- If your certificate is in a different location or has a different name, update your Nginx config accordingly:
-  ```nginx
-  ssl_certificate /path/to/your/cert.crt;
-  ssl_certificate_key /path/to/your/cert.key;
-  ```
-- If you don’t have a certificate, you can use a self-signed one for testing, or use Let’s Encrypt for a free cert.
-
----
-
-## 2. **Rewrite or Internal Redirection Cycle**
-```
-rewrite or internal redirection cycle while internally redirecting to "/index.html"
-```
-**What this means:**  
-Nginx is stuck in a loop trying to serve `/index.html`, likely because `/index.html` does not exist or is not readable.
-
-**How to fix:**
-- Make sure `/opt/ER_Linux/frontend/build/index.html` exists and is readable by the Nginx user (`www-data`).
-- Check permissions:
-  ```bash
-  ls -l /opt/ER_Linux/frontend/build/index.html
-  ```
-  Should be at least `-rw-r--r--` and owned by `www-data`.
-- If the file is missing, rebuild your frontend:
-  ```bash
-  cd /opt/ER_Linux/frontend
-  npm install
-  npm run build
-  ```
-- If the file exists, but you still get the error, check your Nginx config for the `location /` block:
-  ```nginx
-  location / {
-      try_files $uri /index.html;
-  }
-  ```
-  This is correct, but only if `/index.html` exists.
-
----
-
-## **Summary Table**
-
-| Error                                   | Cause                        | Fix                                      |
-|------------------------------------------|------------------------------|------------------------------------------|
-| SSL cert not found                       | Wrong/missing cert path      | Fix path or generate cert                |
-| Redirection cycle to /index.html         | Missing/unreadable index.html| Rebuild frontend, fix permissions        |
-
----
-
-## **What to do next:**
-
-1. **Fix the SSL certificate path or generate a valid cert.**
-2. **Ensure `/opt/ER_Linux/frontend/build/index.html` exists and is readable.**
-3. **Reload Nginx:**
-   ```bash
-   sudo nginx -t
-   sudo systemctl reload nginx
-   ```
-4. **Test your site again.**
-
----
-
-**If you need help generating a self-signed cert or fixing permissions, let me know!**  
-If you still see errors, paste the output of:  
-```bash
-ls -l /opt/ER_Linux/frontend/build/index.html
-```  
-and I’ll help you further!
+root@DELRHDERS001P:/opt/erapp/frontend/build# sudo tail -n 30 /var/log/nginx/error.log
+2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
+2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
+2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
+2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
+2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
+2025/07/23 14:08:02 [error] 1978160#1978160: *15 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:18 [error] 1978160#1978160: *17 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/favicon.ico" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:08:19 [error] 1978160#1978160: *19 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
