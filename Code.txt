@@ -1,5 +1,67 @@
-10.91.31.57/:1  GET https://10.91.31.57/static/css/2.dbb74888.chunk.css net::ERR_ABORTED 404 (Not Found)
-10.91.31.57/:1  GET https://10.91.31.57/static/css/main.f36f01c9.chunk.css net::ERR_ABORTED 404 (Not Found)
-10.91.31.57/:1  GET https://10.91.31.57/static/js/2.0f065ca2.chunk.js net::ERR_ABORTED 404 (Not Found)
-10.91.31.57/:1  GET https://10.91.31.57/static/js/main.945e670a.chunk.js net::ERR_ABORTED 404 (Not Found)
-favicon.jpg:1  GET https://10.91.31.57/favicon.jpg 404 (Not Found)
+To fix **permission issues** with your React `build/` folder (especially if you're getting 403 or 404), run these commands from your frontend directory:
+
+---
+
+### ✅ Give Full Read Access to NGINX
+
+```bash
+cd /opt/erapp/frontend
+
+# Make sure build directory exists
+sudo mkdir -p build
+
+# Make sure everything inside build is readable
+sudo chmod -R 755 build
+sudo chown -R www-data:www-data build
+```
+
+---
+
+### 🔐 If You're Unsure About Web Server User
+
+For **Ubuntu NGINX**, it typically runs as `www-data`. You can confirm using:
+
+```bash
+ps aux | grep nginx
+```
+
+If it shows:
+
+```bash
+www-data  ...
+```
+
+You're good. Otherwise, replace `www-data` above with whatever user is running NGINX.
+
+---
+
+### ⚠️ Also Set Permissions for Whole Frontend Path
+
+```bash
+sudo chmod -R 755 /opt/erapp/frontend
+sudo chown -R www-data:www-data /opt/erapp/frontend
+```
+
+---
+
+### 🔁 Then Restart NGINX
+
+```bash
+sudo systemctl restart nginx
+```
+
+---
+
+### 🚀 Final Test
+
+Now reload your browser:
+
+```
+https://10.91.31.57/
+```
+
+If permissions were the problem, your CSS/JS files will now load properly.
+
+---
+
+Let me know if you want to *log permission errors live* from NGINX (`/var/log/nginx/error.log`) for more root cause debugging.
