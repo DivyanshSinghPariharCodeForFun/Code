@@ -1,4 +1,78 @@
-`curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+Got it. If `/usr/bin/npm` doesn’t exist **even after installing Node.js + npm via APT**, here’s the clean step-by-step **recovery and fix**:
+
+---
+
+### ✅ Step-by-Step Fix for Broken or Missing `npm`
+
+#### 1. **Check Node and NPM Install Status**
+
+```bash
+node -v     # Should print v18.x.x
+npm -v      # Might fail here
+```
+
+If `node` works but `npm` doesn't — then the `npm` package didn't install correctly.
+
+---
+
+#### 2. **Force Reinstall npm from APT**
+
+Run this:
+
+```bash
+sudo apt purge nodejs npm -y
+sudo rm -rf /usr/bin/node /usr/bin/npm /usr/local/bin/node /usr/local/bin/npm /opt/nodejs
+```
+
+Then reinstall:
+
+```bash
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
 sudo apt install -y nodejs
-sudo apt install npm
-sudo npm install -g pm2`
+```
+
+After this, **npm should be bundled** with `nodejs` (modern Node versions include `npm`).
+
+---
+
+#### 3. **Check Again**
+
+```bash
+which node    # should be /usr/bin/node
+which npm     # should be /usr/bin/npm
+npm -v        # should return something like 9.x.x
+```
+
+---
+
+### ❗ If It Still Doesn’t Exist — Use Manual Fix:
+
+```bash
+sudo apt install -y npm
+```
+
+Or **manually symlink** if you somehow have npm binary at another path:
+
+```bash
+sudo find / -name npm
+```
+
+Then symlink:
+
+```bash
+sudo ln -s /path/to/found/npm /usr/bin/npm
+```
+
+---
+
+### Final Step: Try Building Again
+
+```bash
+cd /opt/erapp/frontend
+npm install
+npm run build
+```
+
+---
+
+Let me know what `node -v`, `npm -v`, and `which npm` output now. That will confirm if your machine is healthy again.
