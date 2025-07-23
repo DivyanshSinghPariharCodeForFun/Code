@@ -1,16 +1,38 @@
-Login.js:18  POST https://10.91.31.57/login 405 (Not Allowed)
-(anonymous) @ xhr.js:195
-xhr @ xhr.js:15
-Ce @ dispatchRequest.js:51
-_request @ Axios.js:187
-request @ Axios.js:40
-(anonymous) @ Axios.js:226
-(anonymous) @ bind.js:5
-onSubmit @ Login.js:18
-wu @ react-dom-client.production.js:11700
-(anonymous) @ react-dom-client.production.js:12259
-Dt @ react-dom-client.production.js:1448
-xu @ react-dom-client.production.js:11845
-Bf @ react-dom-client.production.js:14486
-Mf @ react-dom-client.production.js:14454
-Login.js:29 a {message: 'Request failed with status code 405', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
+server {
+    listen 443 ssl;
+    server_name 10.91.41.16;
+
+    ssl_certificate /etc/ssl/religare/religare.in.crt;
+    ssl_certificate_key /etc/ssl/religare/religare.in.key;
+
+    root /opt/ER_Linux/frontend/build;
+    index index.html;
+
+    # Serve static files directly
+    location /static/ {
+        alias /opt/ER_Linux/frontend/build/static/;
+        expires 30d;
+        add_header Cache-Control "public, max-age=2592000";
+    }
+
+    # Serve other assets (fonts, images, etc.)
+    location ~* \.(?:ico|css|js|gif|jpe?g|png|woff2?|ttf|svg|eot|otf|json)$ {
+        root /opt/ER_Linux/frontend/build;
+        expires 30d;
+        add_header Cache-Control "public, max-age=2592000";
+        try_files $uri =404;
+    }
+
+    # Proxy EVERYTHING else to backend
+    location / {
+        proxy_pass http://localhost:3000;
+        proxy_http_version 1.1;
+    }
+}
+
+server {
+    listen 80;
+    server_name 10.91.41.16;
+    return 301 https://$host$request_uri;
+}
+
