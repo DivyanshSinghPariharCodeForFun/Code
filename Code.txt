@@ -1,84 +1,12 @@
-⚠️ **You're getting this because `npm` is broken in your Node.js v22 standalone install.** Specifically:
+Step 3: Add it to your system PATH
+bash
+Copy
+Edit
+echo 'export PATH=/opt/nodejs/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+If you're running as root or non-login shell, just export manually:
 
-```bash
-Error: Cannot find module '../lib/cli.js'
-```
-
-This usually means:
-
-* You **only downloaded Node.js**, not the full Node + NPM bundle.
-* Or `npm` is **not correctly symlinked** or installed alongside Node.
-
----
-
-### ✅ Fix Options
-
-#### ✅ Option 1: Download the Full Node.js Binary with NPM bundled
-
-If you're doing offline installs, make sure you **download the full bundle that includes `npm`**, not just `node`.
-
-> Use this for **Linux x64**:
-> **👉 [https://nodejs.org/dist/v22.2.0/node-v22.2.0-linux-x64.tar.xz](https://nodejs.org/dist/v22.2.0/node-v22.2.0-linux-x64.tar.xz)**
-
-This includes:
-
-* `node`
-* `npm`
-* all binaries under `/bin`
-
-#### Steps:
-
-1. Extract it locally:
-
-   ```bash
-   tar -xf node-v22.2.0-linux-x64.tar.xz
-   ```
-
-2. Move it to `/opt/nodejs`:
-
-   ```bash
-   sudo mv node-v22.2.0-linux-x64 /opt/nodejs
-   ```
-
-3. Add to your PATH:
-
-   ```bash
-   export PATH=/opt/nodejs/bin:$PATH
-   ```
-
-4. Test:
-
-   ```bash
-   node -v
-   npm -v
-   ```
-
-✅ This `npm` will now work properly.
-
----
-
-#### ❌ Don't Use Custom-Compiled Node Without Full Libs
-
-The error you’re facing:
-
-```bash
-Cannot find module '../lib/cli.js'
-```
-
-...is because you're calling `npm` directly from a half-broken binary directory (`/opt/nodejs/bin/npm`), but `lib/cli.js` isn’t there.
-
----
-
-### ⚙️ Quick Check:
-
-Does this exist?
-
-```bash
-ls /opt/nodejs/lib/node_modules/npm
-```
-
-If not → your install is **incomplete**.
-
----
-
-Let me know if you want me to bundle and upload a zip that works with Node + NPM pre-wired for Ubuntu.
+bash
+Copy
+Edit
+export PATH=/opt/nodejs/bin:$PATH
