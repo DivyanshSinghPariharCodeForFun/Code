@@ -1,61 +1,94 @@
-No user sessions are running outdated binaries.
+You're stuck in a **half-installed state** where:
 
-No VM guests are running outdated hypervisor (qemu) binaries on this host.
-root@DELRHDERS001P:~# sudo apt install -y nodejs
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-nodejs is already the newest version (18.20.8-1nodesource1).
-0 upgraded, 0 newly installed, 0 to remove and 3 not upgraded.
-root@DELRHDERS001P:~# node -v
-v18.20.8
-root@DELRHDERS001P:~# npm -v
-bash: /opt/nodejs/bin/npm: No such file or directory
-root@DELRHDERS001P:~# ^C
-root@DELRHDERS001P:~# ^C
-root@DELRHDERS001P:~# sudo rm -f /opt/nodejs/bin/npm
-root@DELRHDERS001P:~# sudo apt install --reinstall npm -y
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-Some packages could not be installed. This may mean that you have
-requested an impossible situation or if you are using the unstable
-distribution that some required packages have not yet been created
-or been moved out of Incoming.
-The following information may help to resolve the situation:
+* ✅ Node.js 18 is correctly installed from **Nodesource**
+* ❌ `npm` is broken because it's trying to reinstall from the **Ubuntu/Debian package registry**, which is missing dependencies — *because you're mixing package sources (Nodesource + Debian default)*
 
-The following packages have unmet dependencies:
- npm : Depends: node-agent-base but it is not going to be installed
-       Depends: node-aproba but it is not going to be installed
-       Depends: node-archy but it is not going to be installed
-       Depends: node-cacache but it is not going to be installed
-       Depends: node-chalk but it is not going to be installed
-       Depends: node-cli-table3
-       Depends: node-colors but it is not going to be installed
-       Depends: node-columnify but it is not going to be installed
-       Depends: node-debug but it is not going to be installed
-       Depends: node-emoji-regex
-       Depends: node-got but it is not going to be installed
-       Depends: node-graceful-fs but it is not going to be installed
-       Depends: node-gyp but it is not going to be installed
-       Depends: node-https-proxy-agent but it is not going to be installed
-       Depends: node-mkdirp but it is not going to be installed
-       Depends: node-ms but it is not going to be installed
-       Depends: node-nopt but it is not going to be installed
-       Depends: node-normalize-package-data but it is not going to be installed
-       Depends: node-npm-package-arg but it is not going to be installed
-       Depends: node-npmlog but it is not going to be installed
-       Depends: node-read-package-json but it is not going to be installed
-       Depends: node-rimraf but it is not going to be installed
-       Depends: node-semver but it is not going to be installed
-       Depends: node-ssri but it is not going to be installed
-       Depends: node-string-width but it is not going to be installed
-       Depends: node-strip-ansi but it is not going to be installed
-       Depends: node-tar but it is not going to be installed
-       Depends: node-validate-npm-package-name but it is not going to be installed
-       Depends: node-which but it is not going to be installed
-       Depends: node-write-file-atomic but it is not going to be installed
-       Depends: nodejs:any (>= 10)
-       Recommends: node-tap but it is not going to be installed
-E: Unable to correct problems, you have held broken packages.
-root@DELRHDERS001P:~#
+---
+
+## ✅ Solution: Get `npm` the right way (via NodeSource)
+
+Since `nodejs` from NodeSource **includes npm**, we’ll manually symlink or reinstall npm without touching broken `apt` dependencies.
+
+---
+
+## 🔧 FIX: Manual Symlink or Clean NPM Reinstall
+
+### 🔹 **Option 1: Symlink npm manually** (quickest, try first)
+
+Run:
+
+```bash
+sudo ln -s /usr/bin/npm /opt/nodejs/bin/npm
+```
+
+Then:
+
+```bash
+npm -v
+```
+
+If this works — you're done.
+
+---
+
+### 🔹 **Option 2: Remove Debian npm, reinstall npm from official source**
+
+1. **Purge broken npm packages**:
+
+```bash
+sudo apt remove npm -y
+sudo apt autoremove -y
+```
+
+2. **Install npm cleanly using NodeSource version**:
+
+```bash
+sudo npm install -g npm
+```
+
+Then confirm:
+
+```bash
+which npm
+npm -v
+```
+
+---
+
+## 🧼 BONUS: Fix `.bashrc` or `.profile` Path Pollution
+
+If you're still getting `/opt/nodejs/bin/npm` errors even after reinstall:
+
+Run:
+
+```bash
+nano ~/.bashrc
+```
+
+Look for:
+
+```bash
+export PATH=/opt/nodejs/bin:$PATH
+```
+
+Delete that line. Then:
+
+```bash
+source ~/.bashrc
+hash -r
+```
+
+---
+
+## ✅ Final Check
+
+```bash
+node -v       # should be v18.20.8
+npm -v        # should be something like 10.x or higher
+which node    # should show /usr/bin/node
+which npm     # should show /usr/bin/npm
+```
+
+---
+
+Let me know if you're still getting that `/opt/nodejs/bin/npm` error. This is common after people install Node manually once in `/opt` and later switch to NodeSource.
