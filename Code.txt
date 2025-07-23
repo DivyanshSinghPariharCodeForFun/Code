@@ -1,93 +1,30 @@
-Great hustle so far, you're *this close* — Node.js is installed and working, but `npm` is throwing a `MODULE_NOT_FOUND` error because the `lib/node_modules/npm` folder is **missing** or not linked properly.
+No services need to be restarted.
 
-Here's the fix 🔧:
+No containers need to be restarted.
 
----
+No user sessions are running outdated binaries.
 
-### ✅ Step-by-step Fix for NPM `MODULE_NOT_FOUND`
-
-#### 1. Check if `npm` actually exists in the install
-
-Run:
-
-```bash
-ls /opt/nodejs/lib/node_modules/npm
-```
-
-If you see files like `bin`, `lib`, `package.json`, etc. — you're good.
-
-If it says "No such file or directory" — your Node binary **doesn’t include** `npm`. (Some versions don’t, especially Alpine or minimal builds.)
-
----
-
-### 🩹 Option 1: Manually Symlink NPM (if `lib/node_modules/npm` exists)
-
-Run:
-
-```bash
-sudo ln -s /opt/nodejs/lib/node_modules/npm/bin/npm-cli.js /opt/nodejs/bin/npm
-sudo ln -s /opt/nodejs/lib/node_modules/npm/bin/npx-cli.js /opt/nodejs/bin/npx
-```
-
-Then:
-
-```bash
-npm -v
-```
-
----
-
-### 🛠️ Option 2: Manually add NPM if it’s missing (offline)
-
-If `/opt/nodejs/lib/node_modules/npm/` **does not exist**, do this:
-
-#### 📦 Step 1: Download the full npm package from a working machine
-
-On any system with working internet:
-
-```bash
-npm pack npm
-```
-
-This will download a `.tgz` file like `npm-10.5.0.tgz`.
-
----
-
-#### 📁 Step 2: Move it to your server
-
-You can SCP it or upload via GitHub repo or `wget` from GDrive if needed.
-
-Put it in your server's `/root/npm` folder.
-
----
-
-#### 🔧 Step 3: Extract and install
-
-```bash
-cd /root/npm
-tar -xzf npm-10.5.0.tgz
-cd package
-sudo cp -r . /opt/nodejs/lib/node_modules/npm
-sudo ln -sf /opt/nodejs/lib/node_modules/npm/bin/npm-cli.js /opt/nodejs/bin/npm
-sudo ln -sf /opt/nodejs/lib/node_modules/npm/bin/npx-cli.js /opt/nodejs/bin/npx
-```
-
----
-
-#### 🧪 Final check:
-
-```bash
-npm -v
-npx -v
-```
-
-If this works, you're now fully set up offline with `Node` + `npm`.
-
----
-
-### ⚠️ Bonus: Prevent this next time
-
-* Always download Node **with npm included**, like from official:
-  [https://nodejs.org/dist/v22.2.0/](https://nodejs.org/dist/v22.2.0/)
-
-Let me know if you want me to give you the `.tgz` of latest npm — I’ll prep it for upload.
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+root@DELRHDERS001P:~# npm -v
+bash: /opt/nodejs/bin/npm: No such file or directory
+root@DELRHDERS001P:~# ^C
+root@DELRHDERS001P:~# node -v
+v12.22.9
+root@DELRHDERS001P:~# npm -v
+bash: /opt/nodejs/bin/npm: No such file or directory
+root@DELRHDERS001P:~# cd /opt/nodejs
+bash: cd: /opt/nodejs: No such file or directory
+root@DELRHDERS001P:~# cd/opt
+bash: cd/opt: No such file or directory
+root@DELRHDERS001P:~# cd /opt
+root@DELRHDERS001P:/opt# ls
+commvault  ds_agent  erapp
+root@DELRHDERS001P:/opt# cd erapp
+root@DELRHDERS001P:/opt/erapp# ls
+frontend  package-lock.json  README.md  server
+root@DELRHDERS001P:/opt/erapp# cd ..
+root@DELRHDERS001P:/opt# cd erapp
+root@DELRHDERS001P:/opt/erapp# cd frontend
+root@DELRHDERS001P:/opt/erapp/frontend# npm run buils
+bash: /opt/nodejs/bin/npm: No such file or directory
+root@DELRHDERS001P:/opt/erapp/frontend#
