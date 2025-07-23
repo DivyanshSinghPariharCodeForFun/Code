@@ -1,15 +1,44 @@
-How to Fix
-Option 1: Upgrade Node.js (Recommended)
-Remove the broken MongoDB repo (it’s causing apt errors):
-Apply to index.js
-Run
-update
-Install Node.js 18 (LTS):
-Apply to index.js
-Run
-nodejs
-Verify the upgrade:
-Apply to index.js
-Run
-v
-Should show v18.x.x or higher.
+Your backend is **crashing** because your Node.js version is too old to support optional chaining (`?.`):
+
+```
+SyntaxError: Unexpected token '.'
+0|er-backe |       employeeId: audit.emp_id?._id,
+```
+
+You are running:
+```
+node -v
+v12.22.9
+```
+**Optional chaining (`?.`) requires Node.js v14 or higher.**
+
+---
+
+## **How to Fix**
+
+### **Option 1: Upgrade Node.js (Recommended)**
+
+1. **Remove the broken MongoDB repo (it’s causing apt errors):**
+   ```bash
+   rm /etc/apt/sources.list.d/mongodb-org-7.0.list
+   apt-get update
+   ```
+
+2. **Install Node.js 18 (LTS):**
+   ```bash
+   curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+   apt-get install -y nodejs
+   ```
+
+3. **Verify the upgrade:**
+   ```bash
+   node -v
+   ```
+   Should show `v18.x.x` or higher.
+
+4. **Restart your backend:**
+   ```bash
+   pm2 restart er-backend
+   ```
+
+---
