@@ -5,12 +5,12 @@ server {
     ssl_certificate /etc/ssl/religare/religare.in.cer;
     ssl_certificate_key /etc/ssl/religare/religare.in.key;
 
-    root /opt/ER_Linux/frontend/build;
+    root /opt/erapp/frontend/build;
     index index.html;
 
     # Static assets
     location /static/ {
-        alias /opt/ER_Linux/frontend/build/static/;
+        alias /opt/erapp/frontend/build/static/;
         expires 30d;
         add_header Cache-Control "public, max-age=2592000";
     }
