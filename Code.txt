@@ -1,68 +1,55 @@
+bash: cd: default: Not a directory
+root@DELRHDERS001P:/etc/nginx/sites-available# sudo nano /etc/nginx/sites-available/default
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 satust
+[PM2][ERROR] Command not found
 
+usage: pm2 [options] <command>
 
-## 🔐 Generate Key + CSR for `*.religare.in`
+pm2 -h, --help             all available commands and options
+pm2 examples               display pm2 usage examples
+pm2 <command> -h           help on a specific command
 
-Run this in your server/terminal:
+Access pm2 files in ~/.pm2
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 status
+┌────┬───────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name          │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼───────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ er-backend    │ default     │ 1.0.0   │ fork    │ 0        │ 0      │ 16   │ errored   │ 0%       │ 0b       │ root     │ disabled │
+└────┴───────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 logs
+[TAILING] Tailing last 15 lines for [all] processes (change the value with --lines option)
+/root/.pm2/pm2.log last 15 lines:
+PM2        | 2025-07-23T12:57:40: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:40: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:40: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T12:57:40: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:41: PM2 log: Script /opt/erapp/server/index.js had too many unstable restarts (16). Stopped. "errored"
 
-### 📄 Step 1: Generate Private Key
+/root/.pm2/logs/er-backend-out.log last 15 lines:
+/root/.pm2/logs/er-backend-error.log last 15 lines:
+0|er-backe | /opt/erapp/server/index.js:337
+0|er-backe |       employeeId: audit.emp_id?._id,
+0|er-backe |                                ^
+0|er-backe |
+0|er-backe | SyntaxError: Unexpected token '.'
+0|er-backe |     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+0|er-backe |     at Module._compile (internal/modules/cjs/loader.js:963:27)
+0|er-backe |     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+0|er-backe |     at Module.load (internal/modules/cjs/loader.js:863:32)
+0|er-backe |     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+0|er-backe |     at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+0|er-backe |     at Module._compile (internal/modules/cjs/loader.js:999:30)
+0|er-backe |     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+0|er-backe |     at Module.load (internal/modules/cjs/loader.js:863:32)
+0|er-backe |     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
 
-```bash
-openssl genrsa -out religare.in.key 2048
-```
-
-This creates the private key file:
-`religare.in.key` (keep this safe, NEVER share it)
-
----
-
-### 📄 Step 2: Generate CSR for Wildcard Cert
-
-```bash
-openssl req -new -key religare.in.key -out religare.in.csr
-```
-
-It will now ask for details. Fill like this:
-
-| Prompt                 | Your Input                    |
-| ---------------------- | ----------------------------- |
-| **Country Name**       | IN                            |
-| **State**              | Delhi (or your state)         |
-| **Locality**           | New Delhi (or city)           |
-| **Organization Name**  | Religare Ltd. (or legal name) |
-| **Org Unit**           | IT or WebOps                  |
-| **Common Name**        | `*.religare.in`               |
-| **Email**              | your official email           |
-| **Challenge Password** | Leave blank                   |
-
-After this, you'll get:
-
-* `religare.in.csr` → send this to CA
-* `religare.in.key` → keep secure
-
----
-
-## 📂 Final File Structure
-
-```bash
-/etc/ssl/religare/
-├── religare.in.key     # ← private key (used in NGINX)
-├── religare.in.csr     # ← send this to CA
-└── religare.in.crt     # ← will come back from CA
-```
-
-(Optional: CA may also send `ca-bundle.crt` or intermediate cert)
-
----
-
-## 🔁 After You Get `.crt` from CA
-
-Your NGINX config stays the same:
-
-```nginx
-ssl_certificate     /etc/ssl/religare/religare.in.crt;
-ssl_certificate_key /etc/ssl/religare/religare.in.key;
-```
-
-✅ You're now enterprise-grade with wildcard SSL.
-
-Want me to auto-create these with no prompts (via config file)? Or help you validate `.crt` when CA gives it? Let me know.
