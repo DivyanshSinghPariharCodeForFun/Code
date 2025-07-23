@@ -1,232 +1,50 @@
- Use `pm2 monit` to monitor CPU and Memory usage er-backend
-root@DELRHDERS001P:~/do# ^C
-root@DELRHDERS001P:~/do# pm2 logsa
-[PM2][ERROR] Command not found
+Fantastic! 🎉  
+If your server is running on port 3000 and you can access your app, that means your deployment is now successful.
 
-usage: pm2 [options] <command>
+---
 
-pm2 -h, --help             all available commands and options
-pm2 examples               display pm2 usage examples
-pm2 <command> -h           help on a specific command
+## **What to do next:**
 
-Access pm2 files in ~/.pm2
-root@DELRHDERS001P:~/do# pm2 logs
-[TAILING] Tailing last 15 lines for [all] processes (change the value with --lines option)
-/root/.pm2/pm2.log last 15 lines:
-PM2        | 2025-07-23T13:50:08: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2        | 2025-07-23T13:50:08: PM2 log: App [er-backend:0] starting in -fork mode-
-PM2        | 2025-07-23T13:50:08: PM2 log: App [er-backend:0] online
-PM2        | 2025-07-23T13:50:09: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2        | 2025-07-23T13:50:09: PM2 log: App [er-backend:0] starting in -fork mode-
-PM2        | 2025-07-23T13:50:09: PM2 log: App [er-backend:0] online
-PM2        | 2025-07-23T13:50:10: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2        | 2025-07-23T13:50:10: PM2 log: App [er-backend:0] starting in -fork mode-
-PM2        | 2025-07-23T13:50:10: PM2 log: App [er-backend:0] online
-PM2        | 2025-07-23T13:50:10: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2        | 2025-07-23T13:50:10: PM2 log: App [er-backend:0] starting in -fork mode-
-PM2        | 2025-07-23T13:50:10: PM2 log: App [er-backend:0] online
-PM2        | 2025-07-23T13:50:11: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2        | 2025-07-23T13:50:11: PM2 log: App [er-backend:0] starting in -fork mode-
-PM2        | 2025-07-23T13:50:11: PM2 log: App [er-backend:0] online
+1. **Test All Features**
+   - Log in, create, edit, and view all parts of your app.
+   - Try direct URL access to React routes (e.g., `/dashboard`, `/create_frequency`, etc.).
+   - Test backend endpoints (e.g., `/login`, `/register`, `/hods`, etc.).
 
-/root/.pm2/logs/er-backend-out.log last 15 lines:
-/root/.pm2/logs/er-backend-error.log last 15 lines:
-0|er-backe |     at async ScramSHA256.auth (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:37:20)
-0|er-backe |     at async performInitialHandshake (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:104:13)
-0|er-backe |     at async connect (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:24:9) {
-0|er-backe |   errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
-0|er-backe |   errorResponse: {
-0|er-backe |     ok: 0,
-0|er-backe |     errmsg: 'Authentication failed.',
-0|er-backe |     code: 18,
-0|er-backe |     codeName: 'AuthenticationFailed'
-0|er-backe |   },
-0|er-backe |   ok: 0,
-0|er-backe |   code: 18,
-0|er-backe |   codeName: 'AuthenticationFailed',
-0|er-backe |   connectionGeneration: 0
-0|er-backe | }
+2. **Monitor Logs**
+   - Keep an eye on logs for any unexpected errors:
+     ```bash
+     pm2 logs er-backend
+     sudo tail -n 30 /var/log/nginx/error.log
+     ```
 
-0|er-backend  | (node:1973902) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | (Use `node --trace-warnings ...` to show where the warning was created)
-0|er-backend  | (node:1973902) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | MongoDB connection error: MongoServerError: Authentication failed.
-0|er-backend  |     at Connection.sendCommand (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:305:27)
-0|er-backend  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-0|er-backend  |     at async Connection.command (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:333:26)
-0|er-backend  |     at async continueScramConversation (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
-0|er-backend  |     at async ScramSHA256.auth (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:37:20)
-0|er-backend  |     at async performInitialHandshake (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:104:13)
-0|er-backend  |     at async connect (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:24:9) {
-0|er-backend  |   errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
-0|er-backend  |   errorResponse: {
-0|er-backend  |     ok: 0,
-0|er-backend  |     errmsg: 'Authentication failed.',
-0|er-backend  |     code: 18,
-0|er-backend  |     codeName: 'AuthenticationFailed'
-0|er-backend  |   },
-0|er-backend  |   ok: 0,
-0|er-backend  |   code: 18,
-0|er-backend  |   codeName: 'AuthenticationFailed',
-0|er-backend  |   connectionGeneration: 0
-0|er-backend  | }
-PM2           | App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2           | App [er-backend:0] starting in -fork mode-
-PM2           | App [er-backend:0] online
-0|er-backend  | (node:1973926) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | (Use `node --trace-warnings ...` to show where the warning was created)
-0|er-backend  | (node:1973926) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | MongoDB connection error: MongoServerError: Authentication failed.
-0|er-backend  |     at Connection.sendCommand (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:305:27)
-0|er-backend  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-0|er-backend  |     at async Connection.command (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:333:26)
-0|er-backend  |     at async continueScramConversation (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
-0|er-backend  |     at async ScramSHA256.auth (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:37:20)
-0|er-backend  |     at async performInitialHandshake (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:104:13)
-0|er-backend  |     at async connect (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:24:9) {
-0|er-backend  |   errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
-0|er-backend  |   errorResponse: {
-0|er-backend  |     ok: 0,
-0|er-backend  |     errmsg: 'Authentication failed.',
-0|er-backend  |     code: 18,
-0|er-backend  |     codeName: 'AuthenticationFailed'
-0|er-backend  |   },
-0|er-backend  |   ok: 0,
-0|er-backend  |   code: 18,
-0|er-backend  |   codeName: 'AuthenticationFailed',
-0|er-backend  |   connectionGeneration: 0
-0|er-backend  | }
-PM2           | App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2           | App [er-backend:0] starting in -fork mode-
-PM2           | App [er-backend:0] online
-0|er-backend  | (node:1973939) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | (Use `node --trace-warnings ...` to show where the warning was created)
-0|er-backend  | (node:1973939) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | MongoDB connection error: MongoServerError: Authentication failed.
-0|er-backend  |     at Connection.sendCommand (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:305:27)
-0|er-backend  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-0|er-backend  |     at async Connection.command (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:333:26)
-0|er-backend  |     at async continueScramConversation (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
-0|er-backend  |     at async ScramSHA256.auth (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:37:20)
-0|er-backend  |     at async performInitialHandshake (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:104:13)
-0|er-backend  |     at async connect (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:24:9) {
-0|er-backend  |   errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
-0|er-backend  |   errorResponse: {
-0|er-backend  |     ok: 0,
-0|er-backend  |     errmsg: 'Authentication failed.',
-0|er-backend  |     code: 18,
-0|er-backend  |     codeName: 'AuthenticationFailed'
-0|er-backend  |   },
-0|er-backend  |   ok: 0,
-0|er-backend  |   code: 18,
-0|er-backend  |   codeName: 'AuthenticationFailed',
-0|er-backend  |   connectionGeneration: 0
-0|er-backend  | }
-PM2           | App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2           | App [er-backend:0] starting in -fork mode-
-PM2           | App [er-backend:0] online
-0|er-backend  | (node:1973952) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | (Use `node --trace-warnings ...` to show where the warning was created)
-0|er-backend  | (node:1973952) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | MongoDB connection error: MongoServerError: Authentication failed.
-0|er-backend  |     at Connection.sendCommand (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:305:27)
-0|er-backend  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-0|er-backend  |     at async Connection.command (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:333:26)
-0|er-backend  |     at async continueScramConversation (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
-0|er-backend  |     at async ScramSHA256.auth (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:37:20)
-0|er-backend  |     at async performInitialHandshake (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:104:13)
-0|er-backend  |     at async connect (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:24:9) {
-0|er-backend  |   errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
-0|er-backend  |   errorResponse: {
-0|er-backend  |     ok: 0,
-0|er-backend  |     errmsg: 'Authentication failed.',
-0|er-backend  |     code: 18,
-0|er-backend  |     codeName: 'AuthenticationFailed'
-0|er-backend  |   },
-0|er-backend  |   ok: 0,
-0|er-backend  |   code: 18,
-0|er-backend  |   codeName: 'AuthenticationFailed',
-0|er-backend  |   connectionGeneration: 0
-0|er-backend  | }
-PM2           | App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2           | App [er-backend:0] starting in -fork mode-
-PM2           | App [er-backend:0] online
-0|er-backend  | (node:1973965) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | (Use `node --trace-warnings ...` to show where the warning was created)
-0|er-backend  | (node:1973965) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | MongoDB connection error: MongoServerError: Authentication failed.
-0|er-backend  |     at Connection.sendCommand (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:305:27)
-0|er-backend  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-0|er-backend  |     at async Connection.command (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:333:26)
-0|er-backend  |     at async continueScramConversation (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
-0|er-backend  |     at async ScramSHA256.auth (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:37:20)
-0|er-backend  |     at async performInitialHandshake (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:104:13)
-0|er-backend  |     at async connect (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:24:9) {
-0|er-backend  |   errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
-0|er-backend  |   errorResponse: {
-0|er-backend  |     ok: 0,
-0|er-backend  |     errmsg: 'Authentication failed.',
-0|er-backend  |     code: 18,
-0|er-backend  |     codeName: 'AuthenticationFailed'
-0|er-backend  |   },
-0|er-backend  |   ok: 0,
-0|er-backend  |   code: 18,
-0|er-backend  |   codeName: 'AuthenticationFailed',
-0|er-backend  |   connectionGeneration: 0
-0|er-backend  | }
-PM2           | App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2           | App [er-backend:0] starting in -fork mode-
-PM2           | App [er-backend:0] online
-0|er-backend  | (node:1973978) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | (Use `node --trace-warnings ...` to show where the warning was created)
-0|er-backend  | (node:1973978) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | MongoDB connection error: MongoServerError: Authentication failed.
-0|er-backend  |     at Connection.sendCommand (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:305:27)
-0|er-backend  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-0|er-backend  |     at async Connection.command (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:333:26)
-0|er-backend  |     at async continueScramConversation (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
-0|er-backend  |     at async ScramSHA256.auth (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:37:20)
-0|er-backend  |     at async performInitialHandshake (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:104:13)
-0|er-backend  |     at async connect (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:24:9) {
-0|er-backend  |   errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
-0|er-backend  |   errorResponse: {
-0|er-backend  |     ok: 0,
-0|er-backend  |     errmsg: 'Authentication failed.',
-0|er-backend  |     code: 18,
-0|er-backend  |     codeName: 'AuthenticationFailed'
-0|er-backend  |   },
-0|er-backend  |   ok: 0,
-0|er-backend  |   code: 18,
-0|er-backend  |   codeName: 'AuthenticationFailed',
-0|er-backend  |   connectionGeneration: 0
-0|er-backend  | }
-PM2           | App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2           | App [er-backend:0] starting in -fork mode-
-PM2           | App [er-backend:0] online
-0|er-backend  | (node:1973991) [MONGODB DRIVER] Warning: useNewUrlParser is a deprecated option: useNewUrlParser has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | (Use `node --trace-warnings ...` to show where the warning was created)
-0|er-backend  | (node:1973991) [MONGODB DRIVER] Warning: useUnifiedTopology is a deprecated option: useUnifiedTopology has no effect since Node.js Driver version 4.0.0 and will be removed in the next major version
-0|er-backend  | MongoDB connection error: MongoServerError: Authentication failed.
-0|er-backend  |     at Connection.sendCommand (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:305:27)
-0|er-backend  |     at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
-0|er-backend  |     at async Connection.command (/opt/erapp/server/node_modules/mongodb/lib/cmap/connection.js:333:26)
-0|er-backend  |     at async continueScramConversation (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:131:15)
-0|er-backend  |     at async ScramSHA256.auth (/opt/erapp/server/node_modules/mongodb/lib/cmap/auth/scram.js:37:20)
-0|er-backend  |     at async performInitialHandshake (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:104:13)
-0|er-backend  |     at async connect (/opt/erapp/server/node_modules/mongodb/lib/cmap/connect.js:24:9) {
-0|er-backend  |   errorLabelSet: Set(2) { 'HandshakeError', 'ResetPool' },
-0|er-backend  |   errorResponse: {
-0|er-backend  |     ok: 0,
-0|er-backend  |     errmsg: 'Authentication failed.',
-0|er-backend  |     code: 18,
-0|er-backend  |     codeName: 'AuthenticationFailed'
-0|er-backend  |   },
-0|er-backend  |   ok: 0,
-0|er-backend  |   code: 18,
-0|er-backend  |   codeName: 'AuthenticationFailed',
-0|er-backend  |   connectionGeneration: 0
-0|er-backend  | }
-PM2           | App [er-backend:0] exited with code [1] via signal [SIGINT]
-PM2           | App [er-backend:0] starting in -fork mode-
-PM2           | App [er-backend:0] online
+3. **(Optional) Secure Your Server**
+   - Make sure only ports 80/443 (and 22 for SSH) are open.
+   - Set up automatic restarts for PM2:
+     ```bash
+     pm2 save
+     pm2 startup
+     ```
 
+4. **(Optional) Set Up Backups**
+   - Regularly back up your MongoDB data and important files.
+
+---
+
+## **If You Need to Deploy Updates:**
+- Pull new code.
+- Rebuild frontend:
+  ```bash
+  cd /opt/ER_Linux/frontend
+  npm install
+  npm run build
+  ```
+- Restart backend:
+  ```bash
+  pm2 restart er-backend
+  ```
+
+---
+
+**If you hit any issues or need help with anything else (Nginx, SSL, MongoDB, etc.), just ask!**
+
+Congratulations on getting your app running! 🚀
