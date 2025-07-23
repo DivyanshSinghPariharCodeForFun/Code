@@ -1,1 +1,2 @@
-NODE_OPTIONS=--openssl-legacy-provider npm run build
+10.91.31.57/:1  GET https://10.91.31.57/ 403 (Forbidden)
+favicon.ico:1  GET https://10.91.31.57/favicon.ico 403 (Forbidden)
