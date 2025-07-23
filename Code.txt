@@ -1,8 +1,75 @@
-db.users.updateOne(
-  { email: "esltester2@religare.com" },
-  { $set: { role: "admin" } }
-)
+Perfect — here's exactly what to type **step-by-step** to connect to your `restrict_app` MongoDB **with authentication**, then insert your `admin` user.
 
+---
 
-mongosh -u yourMongoUsername -p yourMongoPassword --authenticationDatabase admin
-mongosh "mongodb://restrict_user:random@localhost:27017/restrict_app" --eval 'db.admin_user.insertOne({ name: "divyansh", email: "divyansh@religare.com", password: null, role: "admin", authType: "ldap", status: true, deleted_at: null, created_at: new Date(), updated_at: new Date() })'
+## ✅ Step-by-Step With Auth
+
+---
+
+### 🔹 **Step 1: Full Authenticated Connect Command**
+
+```bash
+mongosh "mongodb://restrict_user:random@localhost:27017/restrict_app"
+```
+
+> 🔑 This logs you into the `restrict_app` database **as `restrict_user`** with password `random`.
+
+---
+
+### 🔹 **Step 2: Confirm You’re in Right DB**
+
+Once inside `mongosh`, run:
+
+```js
+db
+```
+
+It should output:
+
+```js
+restrict_app
+```
+
+If not, switch manually:
+
+```js
+use restrict_app
+```
+
+---
+
+### 🔹 **Step 3: Insert LDAP Admin User**
+
+```js
+db.user.insertOne({
+  name: "divyansh",
+  email: "divyansh@religare.com",
+  password: null,
+  role: "admin",
+  authType: "ldap",
+  status: true,
+  deleted_at: null,
+  created_at: new Date(),
+  updated_at: new Date()
+});
+```
+
+You should see:
+
+```js
+{
+  acknowledged: true,
+  insertedId: ObjectId("...")
+}
+```
+
+---
+
+## 🧠 Reminder
+
+* You do **not** need to manually select DB by typing `restrict_app` — that won’t work.
+* Use `use restrict_app` after connecting if you're not already in it.
+
+---
+
+Let me know if you want to convert this to a Bash script or cronjob.
