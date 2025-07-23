@@ -1,1 +1,1 @@
-curl -X POST https://10.91.31.57/api/auth/register -H "Content-Type: application/json" -d '{"email":"iemaildivyansh@gmail.com","password":"random","role":"admin"}' -k
+curl -X POST https://10.91.31.57/login -H "Content-Type: application/json" -d '{"email":"your@email.com","password":"yourpassword"}' -k -v
