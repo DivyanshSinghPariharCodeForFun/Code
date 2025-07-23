@@ -1,3 +1,62 @@
+Perfect. You're **almost there** — config is clean, but here’s what’s likely still causing the `403 Forbidden`:
+
+---
+
+## ✅ Do These 5 Fixes (Specific to Your Setup)
+
+### ✅ 1. **Check if `index.html` exists**
+
+```bash
+ls -l /opt/erapp/frontend/build/index.html
+```
+
+> If it **doesn’t exist**, run:
+
+```bash
+cd /opt/erapp/frontend
+npm run build
+```
+
+---
+
+### ✅ 2. **Fix folder permissions**
+
+```bash
+sudo chown -R www-data:www-data /opt/erapp/frontend/build
+sudo chmod -R 755 /opt/erapp/frontend/build
+```
+
+---
+
+### ✅ 3. **Fix SELinux (if enabled)**
+
+```bash
+sudo chcon -Rt httpd_sys_content_t /opt/erapp/frontend/build
+```
+
+(Only needed on RHEL/CentOS — skip if Ubuntu)
+
+---
+
+### ✅ 4. **Add missing `error_page` fallback (IMPORTANT for SPAs)**
+
+Update your Nginx config to add this inside the `server` block:
+
+```nginx
+error_page 404 /index.html;
+```
+
+So final `location /` becomes:
+
+```nginx
+location / {
+    try_files $uri /index.html;
+}
+```
+
+And full config becomes:
+
+```nginx
 server {
     listen 443 ssl;
     server_name 10.91.31.57;
@@ -19,12 +78,39 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
     }
+
+    error_page 404 /index.html;
 }
+```
 
+---
 
+### ✅ 5. **Restart Nginx**
 
+```bash
+sudo nginx -t
+sudo systemctl restart nginx
+```
 
+---
 
+## 🔍 Optional Debug: Check Nginx Logs
 
+If it still shows `403`, run:
 
+```bash
+sudo tail -n 100 /var/log/nginx/error.log
+```
 
+---
+
+Once you do this, visit:
+**[https://10.91.31.57/](https://10.91.31.57/)**
+Your React app should load ✅
+
+---
+
+Let me know if it works now or show me:
+
+* output of `ls -l /opt/erapp/frontend/build`
+* `tail -n 100 /var/log/nginx/error.log` if still stuck
