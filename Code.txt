@@ -1,38 +1,3 @@
-Hit:1 https://deb.nodesource.com/node_18.x nodistro InRelease
-Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
-Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
-Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
-Hit:5 http://archive.ubuntu.com/ubuntu jammy-security InRelease
-Reading package lists... Done
-2025-07-23 14:51:30 - Repository configured successfully.
-2025-07-23 14:51:30 - To install Node.js, run: apt-get install nodejs -y
-2025-07-23 14:51:30 - You can use N|solid Runtime as a node.js alternative
-2025-07-23 14:51:30 - To install N|solid Runtime, run: apt-get install nsolid -y
-
-root@DELRHDERS001P:~# sudo apt install -y nodejs
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following NEW packages will be installed:
-  nodejs
-0 upgraded, 1 newly installed, 0 to remove and 3 not upgraded.
-Need to get 29.7 MB of archives.
-After this operation, 187 MB of additional disk space will be used.
-Get:1 https://deb.nodesource.com/node_18.x nodistro/main amd64 nodejs amd64 18.20.8-1nodesource1 [29.7 MB]
-Fetched 29.7 MB in 2s (12.1 MB/s)
-(Reading database ... 120483 files and directories currently installed.)
-Preparing to unpack .../nodejs_18.20.8-1nodesource1_amd64.deb ...
-Unpacking nodejs (18.20.8-1nodesource1) ...
-Setting up nodejs (18.20.8-1nodesource1) ...
-Processing triggers for man-db (2.10.2-1) ...
-Scanning processes...
-Scanning candidates...
-Scanning linux images...
-
-No services need to be restarted.
-
-No containers need to be restarted.
-
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
@@ -47,4 +12,50 @@ v18.20.8
 root@DELRHDERS001P:~# npm -v
 bash: /opt/nodejs/bin/npm: No such file or directory
 root@DELRHDERS001P:~# ^C
+root@DELRHDERS001P:~# ^C
+root@DELRHDERS001P:~# sudo rm -f /opt/nodejs/bin/npm
+root@DELRHDERS001P:~# sudo apt install --reinstall npm -y
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ npm : Depends: node-agent-base but it is not going to be installed
+       Depends: node-aproba but it is not going to be installed
+       Depends: node-archy but it is not going to be installed
+       Depends: node-cacache but it is not going to be installed
+       Depends: node-chalk but it is not going to be installed
+       Depends: node-cli-table3
+       Depends: node-colors but it is not going to be installed
+       Depends: node-columnify but it is not going to be installed
+       Depends: node-debug but it is not going to be installed
+       Depends: node-emoji-regex
+       Depends: node-got but it is not going to be installed
+       Depends: node-graceful-fs but it is not going to be installed
+       Depends: node-gyp but it is not going to be installed
+       Depends: node-https-proxy-agent but it is not going to be installed
+       Depends: node-mkdirp but it is not going to be installed
+       Depends: node-ms but it is not going to be installed
+       Depends: node-nopt but it is not going to be installed
+       Depends: node-normalize-package-data but it is not going to be installed
+       Depends: node-npm-package-arg but it is not going to be installed
+       Depends: node-npmlog but it is not going to be installed
+       Depends: node-read-package-json but it is not going to be installed
+       Depends: node-rimraf but it is not going to be installed
+       Depends: node-semver but it is not going to be installed
+       Depends: node-ssri but it is not going to be installed
+       Depends: node-string-width but it is not going to be installed
+       Depends: node-strip-ansi but it is not going to be installed
+       Depends: node-tar but it is not going to be installed
+       Depends: node-validate-npm-package-name but it is not going to be installed
+       Depends: node-which but it is not going to be installed
+       Depends: node-write-file-atomic but it is not going to be installed
+       Depends: nodejs:any (>= 10)
+       Recommends: node-tap but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.
 root@DELRHDERS001P:~#
