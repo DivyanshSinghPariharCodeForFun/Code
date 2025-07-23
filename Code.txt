@@ -1,2 +1,268 @@
-   curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
-   apt-get install -y nodejs
+
+./src/pages/ExportCompletedReviews.js
+  Line 50:10:  'error' is assigned a value but never used  no-unused-vars
+  Line 51:11:  'user' is assigned a value but never used   no-unused-vars
+
+./src/applications/CreateApp.js
+  Line 5:10:   'Navigate' is defined but never used                   no-unused-vars
+  Line 5:20:   'useNavigate' is defined but never used                no-unused-vars
+  Line 12:17:  'setRoles' is assigned a value but never used          no-unused-vars
+  Line 14:10:  'last_audit_date' is assigned a value but never used   no-unused-vars
+  Line 14:27:  'setLastAuditDate' is assigned a value but never used  no-unused-vars
+  Line 16:10:  'desc' is assigned a value but never used              no-unused-vars
+  Line 16:16:  'setDesc' is assigned a value but never used           no-unused-vars
+  Line 20:19:  'setSuccess' is assigned a value but never used        no-unused-vars
+  Line 73:13:  'response' is assigned a value but never used          no-unused-vars
+
+./src/frequency/Create_freq.js
+  Line 5:8:  'Swal' is defined but never used  no-unused-vars
+
+./src/pages/Dashboard.js
+  Line 7:10:   'totalUsers' is assigned a value but never used   no-unused-vars
+  Line 8:10:   'totalEmp' is assigned a value but never used     no-unused-vars
+  Line 9:10:   'totalFreq' is assigned a value but never used    no-unused-vars
+  Line 10:10:  'totalReview' is assigned a value but never used  no-unused-vars
+
+./src/reviewer_dashboard/Dashboard.js
+  Line 8:13:   'XLSX' is defined but never used                       no-unused-vars
+  Line 54:11:  'user' is assigned a value but never used              no-unused-vars
+  Line 108:9:  'rightsCategories' is assigned a value but never used  no-unused-vars
+
+./src/employee/IndexEmoloyee.js
+  Line 95:13:   'response' is assigned a value but never used  no-unused-vars
+  Line 113:13:  'response' is assigned a value but never used  no-unused-vars
+
+./src/audit/create_audit.js
+  Line 9:10:    'selectedemp' is assigned a value but never used               no-unused-vars
+  Line 9:23:    'setSelectedEmp' is assigned a value but never used            no-unused-vars
+  Line 11:10:   'frequencyId' is assigned a value but never used               no-unused-vars
+  Line 11:23:   'setFrequencyId' is assigned a value but never used            no-unused-vars
+  Line 12:10:   'selectedFrequency' is assigned a value but never used         no-unused-vars
+  Line 12:29:   'setSelectedFrequency' is assigned a value but never used      no-unused-vars
+  Line 14:10:   'selectedUserId' is assigned a value but never used            no-unused-vars
+  Line 14:26:   'setSelectedUserId' is assigned a value but never used         no-unused-vars
+  Line 16:10:   'selectedApplicationId' is assigned a value but never used     no-unused-vars
+  Line 16:33:   'setSelectedApplicationId' is assigned a value but never used  no-unused-vars
+  Line 18:10:   'auditDate' is assigned a value but never used                 no-unused-vars
+  Line 18:21:   'setAuditDate' is assigned a value but never used              no-unused-vars
+  Line 19:10:   'inactive' is assigned a value but never used                  no-unused-vars
+  Line 19:20:   'setInactive' is assigned a value but never used               no-unused-vars
+  Line 20:10:   'rights' is assigned a value but never used                    no-unused-vars
+  Line 20:18:   'setRights' is assigned a value but never used                 no-unused-vars
+  Line 21:10:   'reviewerRemarks' is assigned a value but never used           no-unused-vars
+  Line 21:27:   'setReviewerRemarks' is assigned a value but never used        no-unused-vars
+  Line 23:19:   'setSuccess' is assigned a value but never used                no-unused-vars
+  Line 25:10:   'frequencies' is assigned a value but never used               no-unused-vars
+  Line 114:13:  'response' is assigned a value but never used                  no-unused-vars
+
+./src/pages/MyEmployees.js
+  Line 9:10:  'myAppNames' is assigned a value but never used  no-unused-vars
+
+Search for the keywords to learn more about each warning.
+To ignore, add // eslint-disable-next-line to the line before.
+
+File sizes after gzip:
+
+  254.81 KB  build/static/js/2.0f065ca2.chunk.js
+  30.19 KB   build/static/css/2.dbb74888.chunk.css
+  14.98 KB   build/static/js/main.0f72d2f2.chunk.js
+  1.61 KB    build/static/css/main.f36f01c9.chunk.css
+  1.16 KB    build/static/js/runtime-main.1a55048b.js
+  574 B      build/static/js/3.78c7d907.chunk.js
+
+The project was built assuming it is hosted at /.
+You can control this with the homepage field in your package.json.
+
+The build folder is ready to be deployed.
+You may serve it with a static server:
+
+  npm install -g serve
+  serve -s build
+
+Find out more about deployment here:
+
+  bit.ly/CRA-deploy
+
+root@DELRHDERS001P:/opt/erapp/frontend# ^C
+root@DELRHDERS001P:/opt/erapp/frontend# cd
+root@DELRHDERS001P:~# sudo nano /etc/nginx/sites-available/erapp
+root@DELRHDERS001P:~# sudo nano /etc/nginx/sites-available
+root@DELRHDERS001P:~# cd  /etc/nginx/sites-available
+root@DELRHDERS001P:/etc/nginx/sites-available# ls
+default
+root@DELRHDERS001P:/etc/nginx/sites-available# cd default
+bash: cd: default: Not a directory
+root@DELRHDERS001P:/etc/nginx/sites-available# sudo nano /etc/nginx/sites-available/default
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 satust
+[PM2][ERROR] Command not found
+
+usage: pm2 [options] <command>
+
+pm2 -h, --help             all available commands and options
+pm2 examples               display pm2 usage examples
+pm2 <command> -h           help on a specific command
+
+Access pm2 files in ~/.pm2
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 status
+┌────┬───────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name          │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼───────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ er-backend    │ default     │ 1.0.0   │ fork    │ 0        │ 0      │ 16   │ errored   │ 0%       │ 0b       │ root     │ disabled │
+└────┴───────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 logs
+[TAILING] Tailing last 15 lines for [all] processes (change the value with --lines option)
+/root/.pm2/pm2.log last 15 lines:
+PM2        | 2025-07-23T12:57:40: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:40: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:40: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T12:57:40: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T12:57:41: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T12:57:41: PM2 log: Script /opt/erapp/server/index.js had too many unstable restarts (16). Stopped. "errored"
+
+/root/.pm2/logs/er-backend-out.log last 15 lines:
+/root/.pm2/logs/er-backend-error.log last 15 lines:
+0|er-backe | /opt/erapp/server/index.js:337
+0|er-backe |       employeeId: audit.emp_id?._id,
+0|er-backe |                                ^
+0|er-backe |
+0|er-backe | SyntaxError: Unexpected token '.'
+0|er-backe |     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+0|er-backe |     at Module._compile (internal/modules/cjs/loader.js:963:27)
+0|er-backe |     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+0|er-backe |     at Module.load (internal/modules/cjs/loader.js:863:32)
+0|er-backe |     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+0|er-backe |     at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+0|er-backe |     at Module._compile (internal/modules/cjs/loader.js:999:30)
+0|er-backe |     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+0|er-backe |     at Module.load (internal/modules/cjs/loader.js:863:32)
+0|er-backe |     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+
+^C
+root@DELRHDERS001P:/etc/nginx/sites-available# node -v
+v12.22.9
+root@DELRHDERS001P:/etc/nginx/sites-available#    curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+2025-07-23 13:15:45 - Installing pre-requisites
+Get:1 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease [3,005 B]
+Err:1 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 160D26BB1785BA38
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+Get:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease [128 kB]
+Get:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease [127 kB]
+Get:5 http://archive.ubuntu.com/ubuntu jammy-security InRelease [129 kB]
+Get:6 http://archive.ubuntu.com/ubuntu jammy-updates/main amd64 Packages [2,763 kB]
+Get:7 http://archive.ubuntu.com/ubuntu jammy-updates/universe amd64 Packages [1,225 kB]
+Get:8 http://archive.ubuntu.com/ubuntu jammy-updates/universe Translation-en [303 kB]
+Get:9 http://archive.ubuntu.com/ubuntu jammy-security/main amd64 Packages [2,518 kB]
+Get:10 http://archive.ubuntu.com/ubuntu jammy-security/main Translation-en [374 kB]
+Get:11 http://archive.ubuntu.com/ubuntu jammy-security/restricted amd64 Packages [3,912 kB]
+Get:12 http://archive.ubuntu.com/ubuntu jammy-security/restricted Translation-en [708 kB]
+Get:13 http://archive.ubuntu.com/ubuntu jammy-security/universe amd64 Packages [992 kB]
+Get:14 http://archive.ubuntu.com/ubuntu jammy-security/universe Translation-en [216 kB]
+Reading package lists... Done
+W: GPG error: https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 160D26BB1785BA38
+E: The repository 'https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+2025-07-23 13:16:04 - Error: Failed to run 'apt-get update' (Exit Code: 0)
+root@DELRHDERS001P:/etc/nginx/sites-available#    apt-get install -y nodejs
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+nodejs is already the newest version (12.22.9~dfsg-1ubuntu3.6).
+The following packages were automatically installed and are no longer required:
+  linux-headers-5.15.0-126 linux-headers-5.15.0-126-generic linux-image-5.15.0-126-generic linux-modules-5.15.0-126-generic linux-modules-extra-5.15.0-126-generic
+Use 'apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 3 not upgraded.
+root@DELRHDERS001P:/etc/nginx/sites-available# apt-get update
+Hit:1 http://archive.ubuntu.com/ubuntu jammy InRelease
+Get:2 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease [3,005 B]
+Err:2 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 160D26BB1785BA38
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu jammy-security InRelease
+Reading package lists... Done
+W: GPG error: https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 160D26BB1785BA38
+E: The repository 'https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+root@DELRHDERS001P:/etc/nginx/sites-available# node -v
+v12.22.9
+root@DELRHDERS001P:/etc/nginx/sites-available# sudo    curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+2025-07-23 13:17:05 - Installing pre-requisites
+Get:1 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease [3,005 B]
+Err:1 https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease
+  The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 160D26BB1785BA38
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu jammy-security InRelease
+Reading package lists... Done
+W: GPG error: https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease: The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 160D26BB1785BA38
+E: The repository 'https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/7.0 InRelease' is not signed.
+N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+N: See apt-secure(8) manpage for repository creation and user configuration details.
+2025-07-23 13:17:10 - Error: Failed to run 'apt-get update' (Exit Code: 0)
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 restart er-backend
+Use --update-env to update environment variables
+[PM2] Applying action restartProcessId on app [er-backend](ids: [ 0 ])
+[PM2] [er-backend](0) ✓
+┌────┬───────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name          │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼───────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ er-backend    │ default     │ 1.0.0   │ fork    │ 1962133  │ 0s     │ 16   │ online    │ 0%       │ 1.4mb    │ root     │ disabled │
+└────┴───────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 status
+┌────┬───────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name          │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+├────┼───────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+│ 0  │ er-backend    │ default     │ 1.0.0   │ fork    │ 0        │ 0      │ 31   │ errored   │ 0%       │ 0b       │ root     │ disabled │
+└────┴───────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+root@DELRHDERS001P:/etc/nginx/sites-available# pm2 logs
+[TAILING] Tailing last 15 lines for [all] processes (change the value with --lines option)
+/root/.pm2/pm2.log last 15 lines:
+PM2        | 2025-07-23T13:17:35: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] starting in -fork mode-
+PM2        | 2025-07-23T13:17:36: PM2 log: App [er-backend:0] online
+PM2        | 2025-07-23T13:17:37: PM2 log: App [er-backend:0] exited with code [1] via signal [SIGINT]
+PM2        | 2025-07-23T13:17:37: PM2 log: Script /opt/erapp/server/index.js had too many unstable restarts (16). Stopped. "errored"
+
+/root/.pm2/logs/er-backend-out.log last 15 lines:
+/root/.pm2/logs/er-backend-error.log last 15 lines:
+0|er-backe | /opt/erapp/server/index.js:337
+0|er-backe |       employeeId: audit.emp_id?._id,
+0|er-backe |                                ^
+0|er-backe |
+0|er-backe | SyntaxError: Unexpected token '.'
+0|er-backe |     at wrapSafe (internal/modules/cjs/loader.js:915:16)
+0|er-backe |     at Module._compile (internal/modules/cjs/loader.js:963:27)
+0|er-backe |     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+0|er-backe |     at Module.load (internal/modules/cjs/loader.js:863:32)
+0|er-backe |     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+0|er-backe |     at Object.<anonymous> (/usr/local/lib/node_modules/pm2/lib/ProcessContainerFork.js:33:23)
+0|er-backe |     at Module._compile (internal/modules/cjs/loader.js:999:30)
+0|er-backe |     at Object.Module._extensions..js (internal/modules/cjs/loader.js:1027:10)
+0|er-backe |     at Module.load (internal/modules/cjs/loader.js:863:32)
+0|er-backe |     at Function.Module._load (internal/modules/cjs/loader.js:708:14)
+
+^Z
+[1]+  Stopped                 pm2 logs
