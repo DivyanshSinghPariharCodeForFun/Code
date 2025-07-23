@@ -2,3 +2,6 @@ db.users.updateOne(
   { email: "esltester2@religare.com" },
   { $set: { role: "admin" } }
 )
+
+
+mongosh -u yourMongoUsername -p yourMongoPassword --authenticationDatabase admin
