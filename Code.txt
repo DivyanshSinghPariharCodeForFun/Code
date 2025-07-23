@@ -1,2 +1,4 @@
-root@DELRHDERS001P:~# curl -k -X POST https://10.91.31.57/register -H "Content-Type: application/json" -d '{"email":"divyansh@gmail.com","password":"random","role":"admin"}'
-{"error":"No token provided"}root@DELRHDERS001P:~#
+db.users.updateOne(
+  { email: "esltester2@religare.com" },
+  { $set: { role: "admin" } }
+)
