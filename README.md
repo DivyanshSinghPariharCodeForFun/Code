@@ -25,12 +25,12 @@ It will now ask for details. Fill like this:
 | Prompt                 | Your Input                    |
 | ---------------------- | ----------------------------- |
 | **Country Name**       | IN                            |
-| **State**              | Delhi (or your state)         |
-| **Locality**           | New Delhi (or city)           |
-| **Organization Name**  | Religare Ltd. (or legal name) |
-| **Org Unit**           | IT or WebOps                  |
+| **State**              | Uttar Pradesh (or your state)         |
+| **Locality**           | NOIDA (or city)           |
+| **Organization Name**  | Religare Enterprises Limited (or legal name) |
+| **Org Unit**           | RHDFCL                  |
 | **Common Name**        | `*.religare.in`               |
-| **Email**              | your official email           |
+| **Email**              | rhdfcl.itadmin@religare.com   |
 | **Challenge Password** | Leave blank                   |
 
 After this, you'll get:
