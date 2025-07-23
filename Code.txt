@@ -1,74 +1,50 @@
-Perfect. You're at the right place — just **1 step away from fixing** this cleanly.
+Hit:1 https://deb.nodesource.com/node_18.x nodistro InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu jammy InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu jammy-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu jammy-backports InRelease
+Hit:5 http://archive.ubuntu.com/ubuntu jammy-security InRelease
+Reading package lists... Done
+2025-07-23 14:51:30 - Repository configured successfully.
+2025-07-23 14:51:30 - To install Node.js, run: apt-get install nodejs -y
+2025-07-23 14:51:30 - You can use N|solid Runtime as a node.js alternative
+2025-07-23 14:51:30 - To install N|solid Runtime, run: apt-get install nsolid -y
 
----
+root@DELRHDERS001P:~# sudo apt install -y nodejs
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+The following NEW packages will be installed:
+  nodejs
+0 upgraded, 1 newly installed, 0 to remove and 3 not upgraded.
+Need to get 29.7 MB of archives.
+After this operation, 187 MB of additional disk space will be used.
+Get:1 https://deb.nodesource.com/node_18.x nodistro/main amd64 nodejs amd64 18.20.8-1nodesource1 [29.7 MB]
+Fetched 29.7 MB in 2s (12.1 MB/s)
+(Reading database ... 120483 files and directories currently installed.)
+Preparing to unpack .../nodejs_18.20.8-1nodesource1_amd64.deb ...
+Unpacking nodejs (18.20.8-1nodesource1) ...
+Setting up nodejs (18.20.8-1nodesource1) ...
+Processing triggers for man-db (2.10.2-1) ...
+Scanning processes...
+Scanning candidates...
+Scanning linux images...
 
-## 🚨 Root Cause:
+No services need to be restarted.
 
-APT is failing because there's a **conflict between your old `libnode-dev` from Node 12** and the **new Node 18 `.deb`** package:
+No containers need to be restarted.
 
-```
-trying to overwrite '/usr/include/node/common.gypi', which is also in package libnode-dev 12.22.9
-```
+No user sessions are running outdated binaries.
 
----
-
-## ✅ Solution: Force Remove Conflicting Package & Reinstall
-
-### 1. **Remove the old conflicting packages**
-
-```bash
-sudo apt purge -y libnode-dev nodejs npm
-sudo rm -rf /opt/nodejs /usr/local/bin/node /usr/local/bin/npm
-```
-
----
-
-### 2. **Clean up package manager**
-
-```bash
-sudo apt autoremove -y
-sudo apt clean
-```
-
----
-
-### 3. **Install Node.js v18 properly**
-
-```bash
-curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
-sudo apt install -y nodejs
-```
-
-This will install both **node** and **npm** into `/usr/bin`.
-
----
-
-### 4. **Test installation**
-
-```bash
-node -v     # Should print v18.x
-npm -v      # Should print something like 9.x or 10.x
-which npm   # Should point to /usr/bin/npm
-```
-
----
-
-### 5. (Optional) Reinstall PM2
-
-```bash
-sudo npm install -g pm2
-```
-
----
-
-### 💡 Bonus: Lock it Down
-
-If you want to **lock Node 18** from future upgrades:
-
-```bash
-sudo apt-mark hold nodejs
-```
-
----
-
-Let me know once `node -v` and `npm -v` work cleanly — then you're good to build the frontend!
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+root@DELRHDERS001P:~# sudo apt install -y nodejs
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+nodejs is already the newest version (18.20.8-1nodesource1).
+0 upgraded, 0 newly installed, 0 to remove and 3 not upgraded.
+root@DELRHDERS001P:~# node -v
+v18.20.8
+root@DELRHDERS001P:~# npm -v
+bash: /opt/nodejs/bin/npm: No such file or directory
+root@DELRHDERS001P:~# ^C
+root@DELRHDERS001P:~#
