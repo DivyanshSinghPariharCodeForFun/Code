@@ -1,50 +1,12 @@
-Fantastic! 🎉  
-If your server is running on port 3000 and you can access your app, that means your deployment is now successful.
-
----
-
-## **What to do next:**
-
-1. **Test All Features**
-   - Log in, create, edit, and view all parts of your app.
-   - Try direct URL access to React routes (e.g., `/dashboard`, `/create_frequency`, etc.).
-   - Test backend endpoints (e.g., `/login`, `/register`, `/hods`, etc.).
-
-2. **Monitor Logs**
-   - Keep an eye on logs for any unexpected errors:
-     ```bash
-     pm2 logs er-backend
-     sudo tail -n 30 /var/log/nginx/error.log
-     ```
-
-3. **(Optional) Secure Your Server**
-   - Make sure only ports 80/443 (and 22 for SSH) are open.
-   - Set up automatic restarts for PM2:
-     ```bash
-     pm2 save
-     pm2 startup
-     ```
-
-4. **(Optional) Set Up Backups**
-   - Regularly back up your MongoDB data and important files.
-
----
-
-## **If You Need to Deploy Updates:**
-- Pull new code.
-- Rebuild frontend:
-  ```bash
-  cd /opt/ER_Linux/frontend
-  npm install
-  npm run build
-  ```
-- Restart backend:
-  ```bash
-  pm2 restart er-backend
-  ```
-
----
-
-**If you hit any issues or need help with anything else (Nginx, SSL, MongoDB, etc.), just ask!**
-
-Congratulations on getting your app running! 🚀
+root@DELRHDERS001P:/etc/ssl/religare#      sudo tail -n 30 /var/log/nginx/error.log
+\2025/07/22 17:16:52 [notice] 1847056#1847056: using inherited sockets from "6;7;"
+2025/07/23 13:57:17 [emerg] 1977600#1977600: cannot load certificate "/etc/ssl/religare/religare.in.crt": BIO_new_file() failed (SSL: error:80000002:system library::No such file or directory:calling fopen(/etc/ssl/religare/religare.in.crt, r) error:10000080:BIO routines::no such file)
+2025/07/23 14:01:14 [notice] 1977812#1977812: signal process started
+2025/07/23 14:01:41 [error] 1977814#1977814: *5 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
+2025/07/23 14:01:41 [error] 1977814#1977814: *7 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+2025/07/23 14:02:10 [error] 1977814#1977814: *8 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "ers.religare.in"
+2025/07/23 14:02:10 [error] 1977814#1977814: *9 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
+2025/07/23 14:02:13 [error] 1977814#1977814: *10 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "ers.religare.in"
+2025/07/23 14:02:13 [error] 1977814#1977814: *11 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
+2025/07/23 14:02:33 [error] 1977814#1977814: *12 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "ers.religare.in"
+2025/07/23 14:02:33 [error] 1977814#1977814: *13 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
