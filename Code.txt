@@ -1,8 +1,16 @@
-curl -X POST https://10.91.31.57/api/auth/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Divyansh",
-    "email": "iemaildivyansh@gmail.com",
-    "password": "random",
-    "role": "admin"
-  }' -k
+Login.js:18  POST https://10.91.31.57/login 405 (Not Allowed)
+(anonymous) @ xhr.js:195
+xhr @ xhr.js:15
+Ce @ dispatchRequest.js:51
+_request @ Axios.js:187
+request @ Axios.js:40
+(anonymous) @ Axios.js:226
+(anonymous) @ bind.js:5
+onSubmit @ Login.js:18
+wu @ react-dom-client.production.js:11700
+(anonymous) @ react-dom-client.production.js:12259
+Dt @ react-dom-client.production.js:1448
+xu @ react-dom-client.production.js:11845
+Bf @ react-dom-client.production.js:14486
+Mf @ react-dom-client.production.js:14454
+Login.js:29 a {message: 'Request failed with status code 405', name: 'AxiosError', code: 'ERR_BAD_REQUEST', config: {…}, request: XMLHttpRequest, …}
