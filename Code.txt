@@ -1,94 +1,59 @@
-2025-07-23 13:21:27 - To install N|solid Runtime, run: apt-get install nsolid -y
-
-root@DELRHDERS001P:/etc/nginx/sites-available#  apt-get install nodejs -y
-Reading package lists... Done
-Building dependency tree... Done
-Reading state information... Done
-The following packages were automatically installed and are no longer required:
-  adwaita-icon-theme at-spi2-core dconf-gsettings-backend dconf-service fontconfig gsettings-desktop-schemas gtk-update-icon-cache gyp hicolor-icon-theme
-  humanity-icon-theme javascript-common libatk-bridge2.0-0 libatk1.0-0 libatk1.0-data libatspi2.0-0 libauthen-sasl-perl libavahi-client3 libavahi-common-data
-  libavahi-common3 libc-ares2 libcairo-gobject2 libcairo2 libclone-perl libcolord2 libcups2 libdata-dump-perl libdatrie1 libdconf1 libdrm-amdgpu1 libdrm-intel1
-  libdrm-nouveau2 libdrm-radeon1 libencode-locale-perl libepoxy0 libfile-basedir-perl libfile-desktopentry-perl libfile-listing-perl libfile-mimeinfo-perl
-  libfont-afm-perl libfontenc1 libgl1 libgl1-amber-dri libgl1-mesa-dri libglapi-mesa libglvnd0 libglx-mesa0 libglx0 libgraphite2-3 libgtk-3-0 libgtk-3-bin
-  libgtk-3-common libgtkd-3-0 libharfbuzz0b libhtml-form-perl libhtml-format-perl libhtml-parser-perl libhtml-tagset-perl libhtml-tree-perl libhttp-cookies-perl
-  libhttp-daemon-perl libhttp-date-perl libhttp-message-perl libhttp-negotiate-perl libice6 libio-html-perl libio-socket-ssl-perl libio-stringy-perl
-  libipc-system-simple-perl libjs-events libjs-highlight.js libjs-inherits libjs-is-typedarray libjs-psl libjs-source-map libjs-sprintf-js libjs-typedarray-to-buffer
-  liblcms2-2 libllvm11 libllvm15 liblwp-mediatypes-perl liblwp-protocol-https-perl libmailtools-perl libnet-dbus-perl libnet-http-perl libnet-smtp-ssl-perl
-  libnet-ssleay-perl libnode-dev libnode72 libpango-1.0-0 libpangocairo-1.0-0 libpangoft2-1.0-0 libpciaccess0 libphobos2-ldc-shared98 libpixman-1-0 librsvg2-2
-  librsvg2-common libsensors-config libsensors5 libsm6 libssl-dev libthai-data libthai0 libtie-ixhash-perl libtimedate-perl libtry-tiny-perl liburi-perl libuv1-dev
-  libvte-2.91-0 libvte-2.91-common libvted-3-0 libwayland-client0 libwayland-cursor0 libwayland-egl1 libwww-perl libwww-robotrules-perl libx11-protocol-perl
-  libx11-xcb1 libxaw7 libxcb-dri2-0 libxcb-dri3-0 libxcb-glx0 libxcb-present0 libxcb-randr0 libxcb-render0 libxcb-shape0 libxcb-shm0 libxcb-sync1 libxcb-xfixes0
-  libxcomposite1 libxcursor1 libxdamage1 libxfixes3 libxft2 libxi6 libxinerama1 libxkbcommon0 libxkbfile1 libxml-parser-perl libxml-twig-perl libxml-xpathengine-perl
-  libxmu6 libxrandr2 libxrender1 libxshmfence1 libxt6 libxtst6 libxv1 libxxf86dga1 libxxf86vm1 linux-headers-5.15.0-126 linux-headers-5.15.0-126-generic
-  linux-image-5.15.0-126-generic linux-modules-5.15.0-126-generic linux-modules-extra-5.15.0-126-generic node-abab node-abbrev node-agent-base node-ansi-regex
-  node-ansi-styles node-ansistyles node-aproba node-archy node-are-we-there-yet node-argparse node-arrify node-asap node-asynckit node-balanced-match
-  node-brace-expansion node-builtins node-chalk node-chownr node-clean-yaml-object node-cli-table node-clone node-color-convert node-color-name node-colors
-  node-columnify node-combined-stream node-commander node-console-control-strings node-core-util-is node-cssom node-cssstyle node-debug node-decompress-response
-  node-defaults node-delayed-stream node-delegates node-depd node-diff node-encoding node-end-of-stream node-err-code node-escape-string-regexp node-events
-  node-fancy-log node-foreground-child node-fs-write-stream-atomic node-fs.realpath node-function-bind node-gauge node-get-stream node-glob node-got node-graceful-fs
-  node-growl node-has-flag node-has-unicode node-hosted-git-info node-https-proxy-agent node-iconv-lite node-iferr node-imurmurhash node-indent-string node-inflight
-  node-inherits node-ini node-ip node-ip-regex node-is-buffer node-is-plain-obj node-is-typedarray node-isarray node-isexe node-json-buffer
-  node-json-parse-better-errors node-jsonparse node-kind-of node-lcov-parse node-lodash-packages node-log-driver node-lowercase-keys node-lru-cache
-  node-mimic-response node-minimatch node-minimist node-minipass node-ms node-mute-stream node-negotiator node-normalize-package-data node-npm-bundled
-  node-npm-package-arg node-npmlog node-object-assign node-once node-osenv node-p-cancelable node-p-map node-path-is-absolute node-process-nextick-args
-  node-promise-inflight node-promise-retry node-promzard node-psl node-pump node-punycode node-quick-lru node-read node-read-package-json node-readable-stream
-  node-resolve node-retry node-rimraf node-run-queue node-safe-buffer node-semver node-set-blocking node-signal-exit node-slash node-slice-ansi node-source-map
-  node-source-map-support node-spdx-correct node-spdx-exceptions node-spdx-expression-parse node-spdx-license-ids node-sprintf-js node-ssri node-stack-utils
-  node-stealthy-require node-string-decoder node-string-width node-strip-ansi node-supports-color node-text-table node-time-stamp node-tmatch node-tough-cookie
-  node-typedarray-to-buffer node-unique-filename node-universalify node-util-deprecate node-validate-npm-package-license node-validate-npm-package-name
-  node-wcwidth.js node-webidl-conversions node-whatwg-fetch node-wide-align node-wrappy node-write-file-atomic node-yallist perl-openssl-defaults session-migration
-  tilix tilix-common ubuntu-mono x11-common x11-utils x11-xserver-utils xdg-utils
-Use 'apt autoremove' to remove them.
-The following packages will be REMOVED:
-  node-cacache node-copy-concurrently node-coveralls node-esprima node-fetch node-form-data node-gyp node-js-yaml node-jsdom node-mime node-mime-types node-mkdirp
-  node-move-concurrently node-nopt node-opener node-tap node-tap-mocha-reporter node-tap-parser node-tar node-which node-ws nodejs-doc npm
-The following packages will be upgraded:
-  nodejs
-1 upgraded, 0 newly installed, 23 to remove and 3 not upgraded.
-Need to get 29.7 MB of archives.
-After this operation, 167 MB of additional disk space will be used.
-Get:1 https://deb.nodesource.com/node_18.x nodistro/main amd64 nodejs amd64 18.20.8-1nodesource1 [29.7 MB]
-Fetched 29.7 MB in 2s (13.2 MB/s)
-(Reading database ... 179246 files and directories currently installed.)
-Removing npm (8.5.1~ds-1) ...
-Removing node-cacache (15.0.5+~cs13.9.21-3) ...
-Removing node-move-concurrently (1.0.1-4) ...
-Removing node-copy-concurrently (1.0.5-8) ...
-Removing node-coveralls (3.1.1-1) ...
-Removing node-tap (12.0.1+ds-4) ...
-Removing node-tap-mocha-reporter (3.0.7+ds-2) ...
-Removing node-tap-parser (7.0.0+ds1-6) ...
-Removing node-js-yaml (4.1.0+dfsg+~4.0.5-6) ...
-Removing node-esprima (4.0.1+ds+~4.0.3-2) ...
-Removing node-fetch (2.6.7+~2.5.12-1) ...
-Removing node-jsdom (19.0.0+~cs90.11.27-1) ...
-Removing node-form-data (3.0.1-1) ...
-Removing node-gyp (8.4.1-1) ...
-Removing node-mime-types (2.1.33-1) ...
-Removing node-mime (3.0.0+dfsg+~cs3.96.1-1) ...
-Removing node-tar (6.1.11+ds1+~cs6.0.6-1) ...
-Removing node-mkdirp (1.0.4+~1.0.2-1) ...
-Removing node-nopt (5.0.0-2) ...
-Removing node-opener (1.5.2+~1.4.0-1) ...
-Removing node-which (2.0.2+~cs1.3.2-2) ...
-Removing node-ws (8.5.0+~cs13.3.3-2) ...
-Removing nodejs-doc (12.22.9~dfsg-1ubuntu3.6) ...
-(Reading database ... 177009 files and directories currently installed.)
-Preparing to unpack .../nodejs_18.20.8-1nodesource1_amd64.deb ...
-Unpacking nodejs (18.20.8-1nodesource1) over (12.22.9~dfsg-1ubuntu3.6) ...
-dpkg: error processing archive /var/cache/apt/archives/nodejs_18.20.8-1nodesource1_amd64.deb (--unpack):
+You are getting this error during the Node.js upgrade:
+```
+dpkg: error processing archive ...nodejs_18...deb (--unpack):
  trying to overwrite '/usr/include/node/common.gypi', which is also in package libnode-dev 12.22.9~dfsg-1ubuntu3.6
-dpkg-deb: error: paste subprocess was killed by signal (Broken pipe)
-Errors were encountered while processing:
- /var/cache/apt/archives/nodejs_18.20.8-1nodesource1_amd64.deb
-needrestart is being skipped since dpkg has failed
-E: Sub-process /usr/bin/dpkg returned an error code (1)
-root@DELRHDERS001P:/etc/nginx/sites-available# node -v
-v12.22.9
-root@DELRHDERS001P:/etc/nginx/sites-available# pm2 status
-┌────┬───────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
-│ id │ name          │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
-├────┼───────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
-│ 0  │ er-backend    │ default     │ 1.0.0   │ fork    │ 0        │ 0      │ 31   │ errored   │ 0%       │ 0b       │ root     │ disabled │
-└────┴───────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
-root@DELRHDERS001P:/etc/nginx/sites-available#
+```
+This means the old Node.js development package (`libnode-dev`) is conflicting with the new Node.js installation.
+
+---
+
+## **How to Fix the Node.js Upgrade**
+
+1. **Remove the conflicting package:**
+   ```bash
+   apt-get remove -y libnode-dev
+   ```
+
+2. **Clean up any failed installs:**
+   ```bash
+   apt-get -f install
+   ```
+
+3. **Try installing Node.js 18 again:**
+   ```bash
+   apt-get install -y nodejs
+   ```
+
+4. **Verify the upgrade:**
+   ```bash
+   node -v
+   ```
+   You should see `v18.x.x`.
+
+5. **Reinstall npm if needed:**
+   ```bash
+   apt-get install -y npm
+   ```
+
+6. **Restart your backend:**
+   ```bash
+   pm2 restart er-backend
+   ```
+
+---
+
+## **Summary Table**
+
+| Step                        | Command                                 |
+|-----------------------------|-----------------------------------------|
+| Remove conflicting package  | `apt-get remove -y libnode-dev`         |
+| Fix broken installs         | `apt-get -f install`                    |
+| Install Node.js 18          | `apt-get install -y nodejs`             |
+| Check version               | `node -v`                               |
+| Restart backend             | `pm2 restart er-backend`                |
+
+---
+
+**After this, your backend should start and your app will work with modern JS features.**
+
+Let me know if you hit any more errors or need help with the next step!
