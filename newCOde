@@ -8,39 +8,23 @@ server {
     root /opt/ER_Linux/frontend/build;
     index index.html;
 
-    # Serve static files
+    # Static assets
     location /static/ {
         alias /opt/ER_Linux/frontend/build/static/;
         expires 30d;
         add_header Cache-Control "public, max-age=2592000";
     }
 
-    # Serve all other frontend assets
-    location ~* \.(?:ico|css|js|gif|jpe?g|png|woff2?|ttf|svg|eot|otf|json|html)$ {
-        root /opt/ER_Linux/frontend/build;
-        try_files $uri =404;
-        expires 30d;
-        add_header Cache-Control "public, max-age=2592000";
-    }
-
-    # ✅ API proxy (optional)
-    location /api/ {
+    # Backend proxy: Anything that's not a static file or .html
+    location ~ ^/(?!static/|favicon\.|.*\.html$).*$ {
         proxy_pass http://localhost:3000;
         proxy_http_version 1.1;
-        proxy_set_header Upgrade $http_upgrade;
-        proxy_set_header Connection 'upgrade';
         proxy_set_header Host $host;
-        proxy_cache_bypass $http_upgrade;
+        proxy_set_header X-Real-IP $remote_addr;
     }
 
-    # ✅ Serve index.html for frontend routing (React Router)
+    # Frontend fallback
     location / {
         try_files $uri /index.html;
     }
-}
-
-server {
-    listen 80;
-    server_name 10.91.41.16;
-    return 301 https://$host$request_uri;
 }
