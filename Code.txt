@@ -1,73 +1,74 @@
-Ah — you’re asking about **standalone Node.js binary install**, not NVM. Got it. This is the **most forceful, root-level method** — perfect for when you're stuck on Node v12 system-wide and want to overwrite it **without relying on package managers** like APT or NVM.
+Perfect, bro. Here's the **exact command sequence** to **clone** and **install Node.js v22 offline** from your GitHub:
 
 ---
 
-### ⚔️ Steps to Forcefully Install Node.js via Standalone Binary (v22.x)
+## ✅ Offline Node.js Install From Your GitHub Zip
 
-1. **Go to Node.js official site** and get the latest Linux x64 binary (you can skip this if you have the link):
-
-   👉 [https://nodejs.org/en/download](https://nodejs.org/en/download)
-
-   Or use `wget` directly:
-
-   ```bash
-   wget https://nodejs.org/dist/v22.2.0/node-v22.2.0-linux-x64.tar.xz
-   ```
-
-2. **Extract the archive**:
-
-   ```bash
-   tar -xf node-v22.2.0-linux-x64.tar.xz
-   ```
-
-3. **Move it to `/usr/local` (or wherever you want to globally install)**:
-
-   ```bash
-   sudo mv node-v22.2.0-linux-x64 /usr/local/node22
-   ```
-
-4. **Add it to your path permanently**:
-
-   Edit `.bashrc` or `.zshrc`:
-
-   ```bash
-   nano ~/.bashrc
-   ```
-
-   Add this at the bottom:
-
-   ```bash
-   export PATH=/usr/local/node22/bin:$PATH
-   ```
-
-   Then reload:
-
-   ```bash
-   source ~/.bashrc
-   ```
-
-5. **Verify**:
-
-   ```bash
-   node -v   # Should show v22.2.0
-   npm -v
-   ```
-
----
-
-### 🧨 Want to Completely Wipe System Node (Optional)?
-
-If apt installed node v12 and you want to nuke it:
+### 📍 1. **Clone Your Repo**
 
 ```bash
-sudo apt purge nodejs npm
-sudo rm -rf /usr/bin/node /usr/bin/npm /usr/lib/node_modules
+git clone https://github.com/DivyanshSinghPariharCodeForFun/do.git
+cd do
 ```
 
 ---
 
-### ✅ Final Outcome:
+### 📍 2. **Unzip the Node Bundle**
 
-You'll now be running **Node.js v22 from `/usr/local/node22/bin`**, completely independent of apt or nvm. Ultra clean.
+```bash
+unzip node-bundle.zip
+```
 
-Let me know if you want me to generate a one-liner script to automate this all.
+This gives you the folder:
+
+```bash
+node-v22.2.0-linux-x64/
+```
+
+---
+
+### 📍 3. **Move Node to Global Path**
+
+```bash
+sudo mv node-v22.2.0-linux-x64 /opt/nodejs
+```
+
+---
+
+### 📍 4. **Add Node to Your PATH**
+
+```bash
+echo 'export PATH=/opt/nodejs/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
+```
+
+---
+
+### 📍 5. **Verify Installation**
+
+```bash
+node -v
+npm -v
+```
+
+You should see:
+
+```bash
+v22.2.0
+10.x.x or whatever npm version bundled
+```
+
+---
+
+## 💡 Optional: Make Global for All Users
+
+If you want this Node.js version available system-wide:
+
+```bash
+sudo ln -s /opt/nodejs/bin/node /usr/bin/node
+sudo ln -s /opt/nodejs/bin/npm /usr/bin/npm
+```
+
+---
+
+You're locked and loaded. If you want I can give you an all-in-one shell script (`install-node-offline.sh`) to automate this process on any Ubuntu server. Want that?
