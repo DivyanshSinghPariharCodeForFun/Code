@@ -1,31 +1,66 @@
-root@DELRHDERS001P:/opt/erapp/frontend/build# sudo tail -n 30 /var/log/nginx/error.log
-2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
-2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
-2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
-2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
-2025/07/23 14:08:02 [crit] 1978160#1978160: *15 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
-2025/07/23 14:08:02 [error] 1978160#1978160: *15 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "ers.religare.in", referrer: "https://ers.religare.in/"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [crit] 1978160#1978160: *17 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:18 [error] 1978160#1978160: *17 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET / HTTP/1.1", host: "10.91.31.57"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/favicon.ico" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [crit] 1978160#1978160: *19 stat() "/opt/erapp/frontend/build/index.html" failed (13: Permission denied), client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
-2025/07/23 14:08:19 [error] 1978160#1978160: *19 rewrite or internal redirection cycle while internally redirecting to "/index.html", client: 172.25.137.115, server: 10.91.31.57, request: "GET /favicon.ico HTTP/1.1", host: "10.91.31.57", referrer: "https://10.91.31.57/"
+💥 **Your NGINX issue is 100% a file permissions problem.**
+
+---
+
+### 🚨 Error Breakdown:
+
+```
+stat() "...index.html" failed (13: Permission denied)
+```
+
+This means NGINX **doesn’t have permission** to read the files inside:
+
+```
+/opt/erapp/frontend/build/
+```
+
+---
+
+### ✅ Solution:
+
+Run this to fix **read access** for NGINX:
+
+```bash
+sudo chmod -R o+r /opt/erapp/frontend/build
+sudo chmod -R o+x /opt/erapp/frontend/build
+sudo find /opt/erapp/frontend/build -type d -exec chmod o+x {} \;
+```
+
+Then make sure the whole directory path is **executable** (for traversal):
+
+```bash
+sudo chmod o+x /opt
+sudo chmod o+x /opt/erapp
+sudo chmod o+x /opt/erapp/frontend
+```
+
+---
+
+### ⚠️ NGINX User Access Check:
+
+Check which user NGINX is running as:
+
+```bash
+ps aux | grep nginx
+```
+
+Usually it’s `www-data`. Ensure it has **access rights** to the folder.
+
+You can also explicitly **change ownership or add permissions**:
+
+```bash
+sudo chown -R root:www-data /opt/erapp/frontend/build
+sudo chmod -R 755 /opt/erapp/frontend/build
+```
+
+---
+
+### 🔁 Finally, restart NGINX:
+
+```bash
+sudo nginx -t && sudo systemctl reload nginx
+```
+
+---
+
+Let me know if you’re using SELinux or AppArmor — it may need additional allow rules. But this fix should resolve the 403-style “permission denied” errors.
