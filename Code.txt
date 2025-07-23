@@ -1,24 +1,84 @@
-root@DELRHDERS001P:/opt/erapp/frontend# npm run build
-node:internal/modules/cjs/loader:1189
-  throw err;
-  ^
+⚠️ **You're getting this because `npm` is broken in your Node.js v22 standalone install.** Specifically:
 
+```bash
 Error: Cannot find module '../lib/cli.js'
-Require stack:
-- /opt/nodejs/bin/npm
-    at Module._resolveFilename (node:internal/modules/cjs/loader:1186:15)
-    at Module._load (node:internal/modules/cjs/loader:1012:27)
-    at Module.require (node:internal/modules/cjs/loader:1271:19)
-    at require (node:internal/modules/helpers:123:16)
-    at Object.<anonymous> (/opt/nodejs/bin/npm:2:1)
-    at Module._compile (node:internal/modules/cjs/loader:1434:14)
-    at Module._extensions..js (node:internal/modules/cjs/loader:1518:10)
-    at Module.load (node:internal/modules/cjs/loader:1249:32)
-    at Module._load (node:internal/modules/cjs/loader:1065:12)
-    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:158:12) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [ '/opt/nodejs/bin/npm' ]
-}
+```
 
-Node.js v22.2.0
-root@DELRHDERS001P:/opt/erapp/frontend#
+This usually means:
+
+* You **only downloaded Node.js**, not the full Node + NPM bundle.
+* Or `npm` is **not correctly symlinked** or installed alongside Node.
+
+---
+
+### ✅ Fix Options
+
+#### ✅ Option 1: Download the Full Node.js Binary with NPM bundled
+
+If you're doing offline installs, make sure you **download the full bundle that includes `npm`**, not just `node`.
+
+> Use this for **Linux x64**:
+> **👉 [https://nodejs.org/dist/v22.2.0/node-v22.2.0-linux-x64.tar.xz](https://nodejs.org/dist/v22.2.0/node-v22.2.0-linux-x64.tar.xz)**
+
+This includes:
+
+* `node`
+* `npm`
+* all binaries under `/bin`
+
+#### Steps:
+
+1. Extract it locally:
+
+   ```bash
+   tar -xf node-v22.2.0-linux-x64.tar.xz
+   ```
+
+2. Move it to `/opt/nodejs`:
+
+   ```bash
+   sudo mv node-v22.2.0-linux-x64 /opt/nodejs
+   ```
+
+3. Add to your PATH:
+
+   ```bash
+   export PATH=/opt/nodejs/bin:$PATH
+   ```
+
+4. Test:
+
+   ```bash
+   node -v
+   npm -v
+   ```
+
+✅ This `npm` will now work properly.
+
+---
+
+#### ❌ Don't Use Custom-Compiled Node Without Full Libs
+
+The error you’re facing:
+
+```bash
+Cannot find module '../lib/cli.js'
+```
+
+...is because you're calling `npm` directly from a half-broken binary directory (`/opt/nodejs/bin/npm`), but `lib/cli.js` isn’t there.
+
+---
+
+### ⚙️ Quick Check:
+
+Does this exist?
+
+```bash
+ls /opt/nodejs/lib/node_modules/npm
+```
+
+If not → your install is **incomplete**.
+
+---
+
+Let me know if you want me to bundle and upload a zip that works with Node + NPM pre-wired for Ubuntu.
