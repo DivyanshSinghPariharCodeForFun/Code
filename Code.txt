@@ -5,3 +5,4 @@ db.users.updateOne(
 
 
 mongosh -u yourMongoUsername -p yourMongoPassword --authenticationDatabase admin
+mongosh "mongodb://restrict_user:random@localhost:27017/restrict_app" --eval 'db.admin_user.insertOne({ name: "divyansh", email: "divyansh@religare.com", password: null, role: "admin", authType: "ldap", status: true, deleted_at: null, created_at: new Date(), updated_at: new Date() })'
