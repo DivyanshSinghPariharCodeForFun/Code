@@ -1,66 +1,24 @@
-💥 **Your NGINX issue is 100% a file permissions problem.**
+root@DELRHDERS001P:/opt/erapp/frontend# npm run build
+node:internal/modules/cjs/loader:1189
+  throw err;
+  ^
 
----
+Error: Cannot find module '../lib/cli.js'
+Require stack:
+- /opt/nodejs/bin/npm
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1186:15)
+    at Module._load (node:internal/modules/cjs/loader:1012:27)
+    at Module.require (node:internal/modules/cjs/loader:1271:19)
+    at require (node:internal/modules/helpers:123:16)
+    at Object.<anonymous> (/opt/nodejs/bin/npm:2:1)
+    at Module._compile (node:internal/modules/cjs/loader:1434:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1518:10)
+    at Module.load (node:internal/modules/cjs/loader:1249:32)
+    at Module._load (node:internal/modules/cjs/loader:1065:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:158:12) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [ '/opt/nodejs/bin/npm' ]
+}
 
-### 🚨 Error Breakdown:
-
-```
-stat() "...index.html" failed (13: Permission denied)
-```
-
-This means NGINX **doesn’t have permission** to read the files inside:
-
-```
-/opt/erapp/frontend/build/
-```
-
----
-
-### ✅ Solution:
-
-Run this to fix **read access** for NGINX:
-
-```bash
-sudo chmod -R o+r /opt/erapp/frontend/build
-sudo chmod -R o+x /opt/erapp/frontend/build
-sudo find /opt/erapp/frontend/build -type d -exec chmod o+x {} \;
-```
-
-Then make sure the whole directory path is **executable** (for traversal):
-
-```bash
-sudo chmod o+x /opt
-sudo chmod o+x /opt/erapp
-sudo chmod o+x /opt/erapp/frontend
-```
-
----
-
-### ⚠️ NGINX User Access Check:
-
-Check which user NGINX is running as:
-
-```bash
-ps aux | grep nginx
-```
-
-Usually it’s `www-data`. Ensure it has **access rights** to the folder.
-
-You can also explicitly **change ownership or add permissions**:
-
-```bash
-sudo chown -R root:www-data /opt/erapp/frontend/build
-sudo chmod -R 755 /opt/erapp/frontend/build
-```
-
----
-
-### 🔁 Finally, restart NGINX:
-
-```bash
-sudo nginx -t && sudo systemctl reload nginx
-```
-
----
-
-Let me know if you’re using SELinux or AppArmor — it may need additional allow rules. But this fix should resolve the 403-style “permission denied” errors.
+Node.js v22.2.0
+root@DELRHDERS001P:/opt/erapp/frontend#
