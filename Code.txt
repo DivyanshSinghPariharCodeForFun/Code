@@ -1,75 +1,41 @@
-Perfect — here's exactly what to type **step-by-step** to connect to your `restrict_app` MongoDB **with authentication**, then insert your `admin` user.
+import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useAuth } from '.././auth/AuthContext'; // Adjust this path as needed
 
----
+const SessionManager = () => {
+  const { isAuthenticated, logout } = useAuth();
+  const navigate = useNavigate();
+  const intervalRef = useRef();
 
-## ✅ Step-by-Step With Auth
+  useEffect(() => {
+    if (!isAuthenticated) return;
 
----
+    const checkSession = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) throw new Error('No token');
 
-### 🔹 **Step 1: Full Authenticated Connect Command**
+        await axios.get(`${process.env.REACT_APP_API_URL}/session-time-left`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+      } catch (err) {
+        logout();
+        navigate('/logout');
+      }
+    };
 
-```bash
-mongosh "mongodb://restrict_user:random@localhost:27017/restrict_app"
-```
+    // Check immediately on mount
+    checkSession();
 
-> 🔑 This logs you into the `restrict_app` database **as `restrict_user`** with password `random`.
+    // Set interval to check every 30 minutes (1800000 ms)
+    intervalRef.current = setInterval(checkSession, 60 * 60 * 1000);
 
----
+    // Clean up when component unmounts
+    return () => clearInterval(intervalRef.current);
+  }, [isAuthenticated, logout, navigate]);
 
-### 🔹 **Step 2: Confirm You’re in Right DB**
+  return null;
+};
 
-Once inside `mongosh`, run:
-
-```js
-db
-```
-
-It should output:
-
-```js
-restrict_app
-```
-
-If not, switch manually:
-
-```js
-use restrict_app
-```
-
----
-
-### 🔹 **Step 3: Insert LDAP Admin User**
-
-```js
-db.user.insertOne({
-  name: "divyansh",
-  email: "divyansh@religare.com",
-  password: null,
-  role: "admin",
-  authType: "ldap",
-  status: true,
-  deleted_at: null,
-  created_at: new Date(),
-  updated_at: new Date()
-});
-```
-
-You should see:
-
-```js
-{
-  acknowledged: true,
-  insertedId: ObjectId("...")
-}
-```
-
----
-
-## 🧠 Reminder
-
-* You do **not** need to manually select DB by typing `restrict_app` — that won’t work.
-* Use `use restrict_app` after connecting if you're not already in it.
-
----
-
-Let me know if you want to convert this to a Bash script or cronjob.
+export default SessionManager;
