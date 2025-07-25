@@ -1,41 +1,13 @@
-import { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { useAuth } from '.././auth/AuthContext'; // Adjust this path as needed
+use restrict_app
 
-const SessionManager = () => {
-  const { isAuthenticated, logout } = useAuth();
-  const navigate = useNavigate();
-  const intervalRef = useRef();
-
-  useEffect(() => {
-    if (!isAuthenticated) return;
-
-    const checkSession = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) throw new Error('No token');
-
-        await axios.get(`${process.env.REACT_APP_API_URL}/session-time-left`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-      } catch (err) {
-        logout();
-        navigate('/logout');
-      }
-    };
-
-    // Check immediately on mount
-    checkSession();
-
-    // Set interval to check every 30 minutes (1800000 ms)
-    intervalRef.current = setInterval(checkSession, 60 * 60 * 1000);
-
-    // Clean up when component unmounts
-    return () => clearInterval(intervalRef.current);
-  }, [isAuthenticated, logout, navigate]);
-
-  return null;
-};
-
-export default SessionManager;
+db.Applicationlogs.deleteMany({})
+db.Audits.deleteMany({})
+db.Changelogs.deleteMany({})
+db.Completedreviews.deleteMany({})
+db.Employeelogs.deleteMany({})
+db.Employees.deleteMany({})
+db.Frequency.deleteMany({})
+db.Frequencylogs.deleteMany({})
+db.Users.deleteMany({})
+db.OldAdminNoRights.deleteMany({})
+db.Session.deleteMany({})
