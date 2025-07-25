@@ -65,3 +65,20 @@ error: export type csv requires --fields flag
 ```
 
 There’s no auto-inference for fields in CSV mode. JSON exports are simpler for dynamic data.
+
+
+
+
+
+To Uplaod Export To Github
+Cretae folder and move that csv file there
+Then Run 
+
+
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/SomethingForWork/exportq1.git
+git push -u origin main
