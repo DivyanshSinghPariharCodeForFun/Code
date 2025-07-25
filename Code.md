@@ -86,4 +86,5 @@ git push -u origin main
 
 mongoexport --db=restrict_app --collection=users --type=csv --fields=_id,email,username,role --out=Users.csv --username=restrict_user --authenticationDatabase=restrict_app;
 
+db.Users.deleteOne({ email: "admin@example.com" });
 
