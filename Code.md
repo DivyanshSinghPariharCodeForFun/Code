@@ -84,15 +84,6 @@ git remote add origin https://github.com/SomethingForWork/exportq1.git
 git push -u origin main
 
 
-mongoexport --db=restrict_app --collection=Applicationlogs --out=Applicationlogs.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Audits --out=Audits.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Changelogs --out=Changelogs.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Completedreviews --out=Completedreviews.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Employeelogs --out=Employeelogs.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Employees --out=Employees.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Frequency --out=Frequency.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Frequencylogs --out=Frequencylogs.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Users --out=Users.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=OldAdminNoRights --out=OldAdminNoRights.json --username=restrict_user --authenticationDatabase=restrict_app
-mongoexport --db=restrict_app --collection=Session --out=Session.json --username=restrict_user --authenticationDatabase=restrict_app
+mongoexport --db=restrict_app --collection=users --type=csv --fields=_id,email,username,role --out=Users.csv --username=restrict_user --authenticationDatabase=restrict_app;
+
 
